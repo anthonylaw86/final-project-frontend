@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "Robot-Slab";
-  src: url("../../vendor/RobotoSlab-Regular.woff");
+  font-family: "Radical";
+  src: url("../../vendor/Radical\ Beat.ttf");
 }
 
 @font-face {
@@ -15,12 +15,15 @@
   height: 80px;
   margin-left: auto;
   align-items: center;
+  background-color: transparent;
+  z-index: 1;
+  border-bottom: 2px solid rgb(255, 255, 255, 0.2);
 }
 
 .header__logo {
-  font-family: "Roboto-Slab", serif;
+  font-family: "Roboto", serif;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 26px;
   line-height: 24px;
   margin-left: 104px;
   margin-top: 30px;
@@ -34,6 +37,12 @@
   line-height: 24px;
   display: flex;
   align-items: center;
+  color: white;
+}
+
+.header__link {
+  text-decoration: none;
+  color: white;
 }
 
 .header__home-link {
@@ -43,8 +52,15 @@
 
 .header-button {
   margin-right: 116px;
+  border: 1px solid white;
   background-color: transparent;
-  height: 48px;
   width: 176px;
-  border-radius: 45%;
+  height: 48px;
+  border-radius: 48px;
+  cursor: pointer;
+  color: white;
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 500;
 }

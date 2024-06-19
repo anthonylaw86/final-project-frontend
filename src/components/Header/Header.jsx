@@ -1,11 +1,16 @@
 import "./Header.css";
+import NewsExplorer from "../../assets/NewsExplorer.svg";
 
 import { Link } from "react-router-dom";
 
 function Header({}) {
   return (
     <header className="header">
-      <h1 className="header__logo">NewsExplorer</h1>
+      <div>
+        <Link to="/" className="header__link">
+          <p className="header__logo">Hit me with that BEAT!</p>
+        </Link>
+      </div>
 
       <div className="header__button-container">
         <Link to="/" className="header__link">
