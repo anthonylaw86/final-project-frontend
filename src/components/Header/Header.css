@@ -16,8 +16,18 @@
   margin-left: auto;
   align-items: center;
   background-color: transparent;
-  z-index: 1;
+
   border-bottom: 2px solid rgb(255, 255, 255, 0.2);
+}
+
+.header__emoji {
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  left: -10px;
+  top: -15px;
+  transform: rotate(-35deg);
 }
 
 .header__logo {

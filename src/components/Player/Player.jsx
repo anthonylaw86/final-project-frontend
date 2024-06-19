@@ -1,5 +1,6 @@
-import React from 'react';
-import SpotifyPlayer from 'react-spotify-web-playback';
+import React from "react";
+import SpotifyPlayer from "react-spotify-web-playback";
+import "./Player.css";
 
 const Player = ({ token, trackUri }) => {
   return (
@@ -7,6 +8,7 @@ const Player = ({ token, trackUri }) => {
       token={token}
       uris={trackUri ? [trackUri] : []}
       autoPlay={true}
+      className="music-player"
     />
   );
 };

@@ -1,5 +1,5 @@
 import "./Header.css";
-import NewsExplorer from "../../assets/NewsExplorer.svg";
+import MusicEmoji from "../../assets/musicemoji.png";
 
 import { Link } from "react-router-dom";
 
@@ -8,6 +8,7 @@ function Header({}) {
     <header className="header">
       <div>
         <Link to="/" className="header__link">
+          <img src={MusicEmoji} alt="music emoji" className="header__emoji" />
           <p className="header__logo">Hit me with that BEAT!</p>
         </Link>
       </div>

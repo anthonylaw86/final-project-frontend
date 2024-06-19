@@ -1,6 +1,6 @@
 import "./Main.css";
 import Header from "../Header/Header";
-import Player from "../Player";
+import Player from "../Player/Player";
 
 function Main({}) {
   return (
