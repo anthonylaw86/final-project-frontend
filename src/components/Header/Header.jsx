@@ -3,7 +3,7 @@ import MusicEmoji from "../../assets/musicemoji.png";
 
 import { Link } from "react-router-dom";
 
-function Header({}) {
+function Header({ handleLoginModal }) {
   return (
     <header className="header">
       <div>
@@ -17,7 +17,11 @@ function Header({}) {
         <Link to="/" className="header__link">
           <p className="header__home-link">Home</p>
         </Link>
-        <button type="button" className="header-button">
+        <button
+          onClick={handleLoginModal}
+          type="button"
+          className="header-button"
+        >
           Sign In
         </button>
       </div>

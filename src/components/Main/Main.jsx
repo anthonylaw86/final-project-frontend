@@ -2,10 +2,10 @@ import "./Main.css";
 import Header from "../Header/Header";
 import Player from "../Player/Player";
 
-function Main({}) {
+function Main({ handleLoginModal }) {
   return (
     <div>
-      <Header />
+      <Header handleLoginModal={handleLoginModal} />
       <div className="main__content-container">
         <p className="main__greeting">March to the beat of your own drum...</p>
         <p className="main__greeting-summary">

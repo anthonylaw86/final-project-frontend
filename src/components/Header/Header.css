@@ -4,6 +4,11 @@
 }
 
 @font-face {
+  font-family: "Pinyon";
+  src: url("../../vendor/PinyonScript-Regular.ttf");
+}
+
+@font-face {
   font-family: "Roboto";
   src: url("../../vendor//Roboto-Medium.woff");
 }
@@ -16,7 +21,6 @@
   margin-left: auto;
   align-items: center;
   background-color: transparent;
-
   border-bottom: 2px solid rgb(255, 255, 255, 0.2);
 }
 
@@ -33,7 +37,7 @@
 .header__logo {
   font-family: "Roboto", serif;
   font-weight: 700;
-  font-size: 26px;
+  font-size: 28px;
   line-height: 24px;
   margin-left: 104px;
   margin-top: 30px;
