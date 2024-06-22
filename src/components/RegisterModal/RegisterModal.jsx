@@ -18,7 +18,7 @@ const RegisterModal = ({
     setPassword(e.target.value);
   };
 
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
@@ -32,7 +32,7 @@ const RegisterModal = ({
     if (isOpen) {
       setEmail("");
       setPassword("");
-      setName("");
+      setUsername("");
     }
   }, [isOpen]);
 
@@ -79,9 +79,9 @@ const RegisterModal = ({
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="username"
           placeholder="Username"
-          value={name}
+          value={username}
           onChange={handleNameChange}
           minLength="2"
           maxLength="40"

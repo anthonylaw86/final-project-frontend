@@ -1,5 +1,5 @@
 import "./ItemModal.css";
-import close from "../../assets/close";
+import close from "../../assets/close.svg";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 

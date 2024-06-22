@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
-import likeIcon from "../../assets/likeIcon";
-import likeIconFilled from "../../assets/likeIconFilled";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import likeIcon from "../../assets/likeIcon.svg";
+import likeIconFilled from "../../assets/likeIconFilled.svg";
 import "./ItemCard.css";
 
 function ItemCard({ item, onCardClick, onCardLike, loggedIn }) {
