@@ -1,0 +1,43 @@
+@font-face {
+  font-family: "Robot";
+  src: url("../../vendor/Roboto-Medium.woff");
+}
+
+.card-section-header {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.card-section-text {
+  font-family: "Roboto";
+  font-size: 20px;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+.card-section-button {
+  font-family: "Roboto";
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.card-section-button:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.card-section__items {
+  display: flex;
+  row-gap: 18px;
+  column-gap: 18px;
+  list-style-type: none;
+  margin: 0px;
+  flex-wrap: wrap;
+  padding: 0;
+}

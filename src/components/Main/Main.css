@@ -4,8 +4,8 @@
 }
 
 @font-face {
-  font-family: "Pinyon";
-  src: url("../../vendor/PinyonScript-Regular.ttf");
+  font-family: "Playwrite";
+  src: url("../../vendor/PlaywriteNZ-VariableFont_wght.ttf");
 }
 
 .main__content-container {
@@ -16,7 +16,7 @@
 }
 
 .main__greeting {
-  font-family: "Pinyon", serif;
+  font-family: "Playwrite", serif;
   font-size: 36px;
   margin-bottom: 10px;
 }

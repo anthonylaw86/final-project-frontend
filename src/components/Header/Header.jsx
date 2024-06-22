@@ -9,7 +9,7 @@ function Header({ handleLoginModal }) {
       <div>
         <Link to="/" className="header__link">
           <img src={MusicEmoji} alt="music emoji" className="header__emoji" />
-          <p className="header__logo">Hit me with that BEAT!</p>
+          <p className="header__logo">gimme a beat</p>
         </Link>
       </div>
 

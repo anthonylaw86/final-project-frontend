@@ -33,6 +33,8 @@
   margin-bottom: 24px;
   color: rgba(93, 0, 226, 0.71);
   font-size: 20px;
+  justify-content: center;
+  display: flex;
 }
 
 .modal__close {
@@ -57,6 +59,8 @@
   box-sizing: border-box;
   width: 100%;
   border-radius: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal__form {
@@ -109,7 +113,7 @@
   width: 124px;
   height: 36px;
   border-radius: 4px;
-  background-color: rgba(0, 0, 0);
+  background-color: rgba(93, 0, 226, 0.71);
   border: none;
   margin-top: 10px;
 }
@@ -120,7 +124,7 @@
 }
 
 .modal__submit-disabled {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(93, 0, 226, 0.71);
 }
 
 .modal__submit_text {
@@ -137,8 +141,6 @@
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
 }
 

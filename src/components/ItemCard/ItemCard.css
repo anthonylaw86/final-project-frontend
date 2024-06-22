@@ -1,0 +1,79 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("../../vendor/Roboto-Medium.woff");
+}
+
+.card__container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  width: 323px;
+  height: 326px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+}
+.card__name-container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  margin-top: 15px;
+}
+
+.card__image {
+  border-color: #000000;
+  border-radius: 20px;
+  width: 328px;
+  height: 328px;
+
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.card__name {
+  position: relative;
+
+  margin: 0;
+  padding: 0;
+  border: 4px;
+  background-color: #ffffff;
+  padding: 2px 12px 2px 12px;
+  border-radius: 4px;
+  width: (73px);
+  height: (24px);
+  text-align: center;
+  font-family: "Roboto";
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #000000;
+  opacity: 0.6;
+  gap: 8px;
+}
+
+.card__like-button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.card__like-button_img {
+  width: 20px;
+  height: 20px;
+}
