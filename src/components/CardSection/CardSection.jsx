@@ -19,7 +19,7 @@ function CardSection({
   console.log("currentUser", currentUser);
 
   const userCards = cards.filter(
-    (item) => item.owner && item.owner.id === currentUser.id
+    (item) => item.owner && item.owner.id === currentUser
   );
 
   console.log("Filtered userCards:", userCards);
