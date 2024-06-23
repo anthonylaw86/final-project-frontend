@@ -16,14 +16,16 @@ import Profile from "../Profile/Profile";
 import ItemModal from "../ItemModal/ItemModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
 
-// Contexts
+// Contexts & Constants
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import defaultMusicCards from "../../../constants/defaultMusicCards";
 
 function App() {
-  const [activeModal, setActiveModal] = useState("add-music");
-  const [currentUser, setCurrentUser] = useState({});
-  const [musicCards, setMusicCards] = useState([]);
+  const [activeModal, setActiveModal] = useState("");
+  const [currentUser, setCurrentUser] = useState(null);
+  const [musicCards, setMusicCards] = useState(defaultMusicCards);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(!!currentUser);
   const [selectedCard, setSelectedCard] = useState({});
   const [isLoading, setIsLoading] = React.useState(false);
 
@@ -50,7 +52,51 @@ function App() {
     setActiveModal("add-music");
   };
 
+  // Item Handlers
+  const handleSubmit = (e) => {
+    setIsLoading(false);
+    closeActiveModal();
+  };
+
+  const handleAddItemSubmit = ({ name, artist, albumUrl }) => {
+    const addNewMusicItem = ({ name, artist, albumUrl }) => {
+      const newItem = {
+        id: Date.now(),
+        name,
+        artist,
+        albumUrl,
+      };
+      setMusicCards([newItem, ...musicCards]);
+    };
+
+    handleSubmit(() => addNewMusicItem({ name, artist, albumUrl }));
+  };
+
+  // Authorization Handlers
+  const handleSignUp = ({ email, password, username }) => {
+    const makeRequest = () => {
+      setCurrentUser({ email, password, username });
+      setIsLoading(true);
+      setLoggedIn(true);
+    };
+    handleSubmit(makeRequest);
+  };
+
+  const handleLogin = ({ email, password }) => {
+    const makeRequest = () => {
+      handleLoginModal({ email, password });
+      setLoggedIn(true);
+    };
+    handleSubmit(makeRequest);
+  };
+
   // useEffect's
+  // useEffect(() => {
+  //   setCurrentUser({ name: "anthony" });
+  //   setIsLoggedIn(!!currentUser);
+
+  // });
+
   useEffect(() => {
     if (!activeModal) return;
 
@@ -78,7 +124,7 @@ function App() {
                   <Main
                     handleLoginModal={handleLoginModal}
                     handleSignUpModal={handleSignUpModal}
-                    isLoggedIn={loggedIn}
+                    isLoggedIn={isLoggedIn}
                   />
                 }
               />
@@ -87,6 +133,8 @@ function App() {
                 element={
                   // <ProtectedRoute loggedIn={loggedIn}>
                   <Profile
+                    handleLoginModal={handleLoginModal}
+                    handleSignUpModal={handleSignUpModal}
                     onCardClick={handleCardClick}
                     cards={musicCards}
                     // onCardDelete={handleDeleteCard}
@@ -99,7 +147,7 @@ function App() {
                 }
               />
             </Routes>
-            <About />
+
             <Footer />
           </div>
         </div>
@@ -108,6 +156,7 @@ function App() {
           isOpen={activeModal === "signup"}
           onClose={closeActiveModal}
           handleLoginModal={handleLoginModal}
+          handleSignUp={handleSignUp}
           buttonText={isLoading ? "Saving..." : "Sign Up"}
         />
 
@@ -115,13 +164,14 @@ function App() {
           isOpen={activeModal === "login"}
           onClose={closeActiveModal}
           handleSignUpModal={handleSignUpModal}
+          handleLogin={handleLogin}
           buttonText={isLoading ? "Saving..." : "Log In"}
         />
 
         <AddItemModal
           onClose={closeActiveModal}
           isOpen={activeModal === "add-music"}
-          // onAddItem={handleAddItemSubmit}
+          onAddItem={handleAddItemSubmit}
           buttonText={isLoading ? "Saving..." : "Add Song"}
         />
 

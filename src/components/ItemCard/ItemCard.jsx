@@ -44,7 +44,7 @@ function ItemCard({ item, onCardClick, onCardLike, loggedIn }) {
         <img
           onClick={handleCardClick}
           className="card__image"
-          src={item.imageUrl}
+          src={item.albumUrl}
           alt={item.name}
         />
       </div>

@@ -1,9 +1,8 @@
-import "./Header.css";
-import MusicEmoji from "../../assets/musicemoji.png";
-
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { useContext } from "react";
+import MusicEmoji from "../../assets/musicemoji.png";
+import "./Header.css";
 
 function Header({ handleLoginModal, isLoggedIn }) {
   const currentUser = useContext(CurrentUserContext);
@@ -16,28 +15,22 @@ function Header({ handleLoginModal, isLoggedIn }) {
           <p className="header__logo">gimme a beat</p>
         </Link>
       </div>
-
       <div className="header__button-container">
         <Link to="/" className="header__link">
           <p className="header__home-link">Home</p>
         </Link>
-
         {isLoggedIn ? (
-          <>
-            <button
-              onClick={handleLoginModal}
-              type="button"
-              className="header-button"
-            >
-              Sign In
-            </button>
-          </>
+          <Link to="/profile" className="header__link">
+            <p className="header__username">{currentUser?.name}</p>
+          </Link>
         ) : (
-          <>
-            <Link to="/profile" className="header__link">
-              <p className="header__username">{currentUser?.name}</p>
-            </Link>
-          </>
+          <button
+            onClick={handleLoginModal}
+            type="button"
+            className="header-button"
+          >
+            Sign In
+          </button>
         )}
       </div>
     </header>

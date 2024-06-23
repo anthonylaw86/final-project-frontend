@@ -16,7 +16,7 @@ const AddItemModal = ({ onAddItem, isOpen, onClose, buttonText }) => {
 
   useEffect(() => {
     if (isOpen) {
-      setValues({ songName: "", songAlbum: "", albumUrl: "" });
+      setValues({ name: "", artist: "", albumUrl: "" });
     }
   }, [isOpen, setValues]);
 
@@ -29,46 +29,46 @@ const AddItemModal = ({ onAddItem, isOpen, onClose, buttonText }) => {
       onSubmit={handleSubmit}
     >
       <label className="modal__label">
-        Song Name{" "}
+        Name{" "}
         <input
           type="text"
           className="modal__input"
-          id="songName"
-          placeholder="Song Name"
-          value={values.songName}
+          id="name"
+          placeholder="Name"
+          value={values.name}
           onChange={handleChange}
           minLength="2"
           maxLength="40"
           required
-          name="songName"
+          name="name"
         />
       </label>
       <label className="modal__label">
-        Song Album{" "}
+        Artist{" "}
         <input
           type="text"
           className="modal__input"
-          id="songAlbum"
-          placeholder="Song Album"
-          value={values.songAlbum}
+          id="artist"
+          placeholder="Artist"
+          value={values.artist}
           onChange={handleChange}
           minLength="2"
           maxLength="40"
           required
-          name="songAlbum"
+          name="artist"
         />
       </label>
       <label className="modal__label">
-        Album Url{" "}
+        Album URL{" "}
         <input
           type="url"
           className="modal__input"
           id="albumUrl"
-          placeholder="Album Url"
+          placeholder="Album URL"
           value={values.albumUrl}
           onChange={handleChange}
           required
-          name="songName"
+          name="albumUrl"
         />
       </label>
     </ModalWithForm>

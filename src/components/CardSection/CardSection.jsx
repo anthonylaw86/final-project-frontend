@@ -10,8 +10,19 @@ function CardSection({
   loggedIn,
   onCardLike,
 }) {
-  const currentUser = useContext(CurrentUserContext);
-  const userCards = cards.filter((item) => item.owner === currentUser._id);
+  const currentUser = useContext(
+    CurrentUserContext || { id: 1, name: "Test User" }
+  );
+
+  console.log("cards", cards);
+
+  console.log("currentUser", currentUser);
+
+  const userCards = cards.filter(
+    (item) => item.owner && item.owner.id === currentUser.id
+  );
+
+  console.log("Filtered userCards:", userCards);
 
   return (
     <div className="card-section">

@@ -20,12 +20,12 @@ const RegisterModal = ({
 
   const [username, setUsername] = useState("");
   const handleNameChange = (e) => {
-    setName(e.target.value);
+    setUsername(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleSignUp({ email, password, name });
+    handleSignUp({ email, password, username });
   };
 
   useEffect(() => {

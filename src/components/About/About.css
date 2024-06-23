@@ -34,6 +34,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   margin-bottom: 13px;
+  color: black;
 }
 
 .about__text-author {

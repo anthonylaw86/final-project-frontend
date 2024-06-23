@@ -1,11 +1,12 @@
 import "./Main.css";
 import Header from "../Header/Header";
 import Player from "../Player/Player";
+import About from "../About/About";
 
-function Main({ handleLoginModal }) {
+function Main({ handleLoginModal, isLoggedIn }) {
   return (
     <div>
-      <Header handleLoginModal={handleLoginModal} />
+      <Header handleLoginModal={handleLoginModal} isLoggedIn={isLoggedIn} />
       <div className="main__content-container">
         <p className="main__greeting">March to the beat of your own drum...</p>
         <p className="main__greeting-summary">
@@ -13,6 +14,7 @@ function Main({ handleLoginModal }) {
           up & moving today.
         </p>
         <Player />
+        <About />
       </div>
     </div>
   );
