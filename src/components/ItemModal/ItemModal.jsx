@@ -6,8 +6,7 @@ import { useContext } from "react";
 function ItemModal({ activeModal, onClose, card, onCardDelete }) {
   const handleDeleteCard = (e) => {
     e.preventDefault();
-    console.log("itemModal", card);
-    onCardDelete(card);
+    onCardDelete(card.id);
   };
 
   const currentUser = useContext(CurrentUserContext);

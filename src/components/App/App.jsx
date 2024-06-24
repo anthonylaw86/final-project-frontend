@@ -78,6 +78,7 @@ function App() {
     console.log("Deleting card with ID:", cardId);
 
     setMusicCards((prevCards) => {
+      console.log(cardId);
       console.log("Original cards: ", prevCards);
       const updatedCards = prevCards.filter((card) => card.id !== cardId);
       console.log("Updated cards: ", updatedCards);
