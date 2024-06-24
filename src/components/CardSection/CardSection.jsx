@@ -34,10 +34,10 @@ function CardSection({
         </button>
       </div>
       <ul className="card-section__items">
-        {userCards.map((item) => {
+        {cards.map((item) => {
           return (
             <ItemCard
-              key={item._id}
+              key={item.id}
               item={item}
               onCardClick={onCardClick}
               loggedIn={loggedIn}

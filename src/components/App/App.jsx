@@ -59,17 +59,32 @@ function App() {
   };
 
   const handleAddItemSubmit = ({ name, artist, albumUrl }) => {
-    const addNewMusicItem = ({ name, artist, albumUrl }) => {
+    const newMusicItem = ({ name, artist, albumUrl }) => {
       const newItem = {
         id: Date.now(),
         name,
         artist,
         albumUrl,
+        owner: { id: 1, name: "John Doe" },
       };
-      setMusicCards([newItem, ...musicCards]);
+      setMusicCards((prevCards) => [newItem, ...prevCards]);
     };
 
-    handleSubmit(() => addNewMusicItem({ name, artist, albumUrl }));
+    newMusicItem({ name, artist, albumUrl });
+    closeActiveModal();
+  };
+
+  const handleDeleteCard = (cardId) => {
+    console.log("Deleting card with ID:", cardId);
+
+    setMusicCards((prevCards) => {
+      console.log("Original cards: ", prevCards);
+      const updatedCards = prevCards.filter((card) => card.id !== cardId);
+      console.log("Updated cards: ", updatedCards);
+      return updatedCards;
+    });
+
+    closeActiveModal();
   };
 
   // Authorization Handlers
@@ -131,19 +146,17 @@ function App() {
               <Route
                 path="/profile"
                 element={
-                  // <ProtectedRoute loggedIn={loggedIn}>
                   <Profile
                     handleLoginModal={handleLoginModal}
                     handleSignUpModal={handleSignUpModal}
                     onCardClick={handleCardClick}
                     cards={musicCards}
-                    // onCardDelete={handleDeleteCard}
+                    onCardDelete={handleDeleteCard}
                     handleAddClick={handleAddClick}
                     loggedIn={loggedIn}
                     // onCardLike={handleCardLike}
                     setLoggedIn={setLoggedIn}
                   />
-                  // </ProtectedRoute>
                 }
               />
             </Routes>
@@ -173,13 +186,14 @@ function App() {
           isOpen={activeModal === "add-music"}
           onAddItem={handleAddItemSubmit}
           buttonText={isLoading ? "Saving..." : "Add Song"}
+          onSubmit={handleAddItemSubmit}
         />
 
         <ItemModal
           activeModal={activeModal}
           card={selectedCard}
           onClose={closeActiveModal}
-          // onCardDelete={handleDeleteCard}
+          onCardDelete={handleDeleteCard}
         />
       </>
     </CurrentUserContext.Provider>

@@ -9,6 +9,8 @@
   display: flex;
   justify-content: space-between;
   background-color: white;
+  margin-top: 20px;
+  align-items: center;
 }
 
 .footer__text {

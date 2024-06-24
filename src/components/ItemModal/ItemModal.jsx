@@ -6,6 +6,7 @@ import { useContext } from "react";
 function ItemModal({ activeModal, onClose, card, onCardDelete }) {
   const handleDeleteCard = (e) => {
     e.preventDefault();
+    console.log("itemModal", card);
     onCardDelete(card);
   };
 
@@ -18,21 +19,20 @@ function ItemModal({ activeModal, onClose, card, onCardDelete }) {
         <button onClick={onClose} type="button" className="modal__close">
           <img src={close} alt="close" className="modal__close_image" />
         </button>
-        <img src={card.imageUrl} alt={card.name} className="modal__image" />
+        <img src={card.albumUrl} alt={card.name} className="modal__image" />
 
         <div className="modal__footer">
           <h2 className="modal__song">{card.name}</h2>
           <p className="modal__artist">{card.artist}</p>
         </div>
-        {isOwn ? (
-          <button
-            type="text"
-            className="modal__button"
-            onClick={handleDeleteCard}
-          >
-            Delete Song
-          </button>
-        ) : null}
+
+        <button
+          type="text"
+          className="modal__button"
+          onClick={handleDeleteCard}
+        >
+          Delete Song
+        </button>
       </div>
     </div>
   );

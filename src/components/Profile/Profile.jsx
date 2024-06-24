@@ -10,6 +10,7 @@ function Profile({
   loggedIn,
   onCardLike,
   handleLoginModal,
+
 }) {
   return (
     <div className="profile">
@@ -20,6 +21,7 @@ function Profile({
         handleAddClick={handleAddClick}
         loggedIn={loggedIn}
         onCardLike={onCardLike}
+  
       />
     </div>
   );

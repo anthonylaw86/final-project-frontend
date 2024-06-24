@@ -52,7 +52,7 @@
   row-gap: 18px;
   column-gap: 18px;
   list-style-type: none;
-  margin: 0px;
+  margin: 40px, 40px, 40px, 40px;
   flex-wrap: wrap;
-  padding: 0;
+  padding: 40px, 40px, 40px, 40px;
 }

@@ -2,7 +2,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useEffect } from "react";
 import { useForm } from "../../../hooks/useForm";
 
-const AddItemModal = ({ onAddItem, isOpen, onClose, buttonText }) => {
+const AddItemModal = ({ onAddItem, isOpen, onClose, buttonText, onSubmit }) => {
   const { values, handleChange, setValues } = useForm({
     songName: "",
     songAlbum: "",

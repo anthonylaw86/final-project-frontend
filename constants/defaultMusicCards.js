@@ -19,8 +19,7 @@ const defaultMusicCards = [
     id: 3,
     name: "Valerie",
     artist: "Amy Winehouse",
-    albumUrl:
-      "https://www.google.com/imgres?q=valerie%20amy%20winehouse&imgurl=https%3A%2F%2Fpreview.redd.it%2Fucooccophej81.jpg%3Fwidth%3D630%26format%3Dpjpg%26auto%3Dwebp%26s%3D4737ba85690cecb7543dd2f2f859e4226d472a8e&imgrefurl=https%3A%2F%2Fwww.reddit.com%2Fr%2FLiverpool%2Fcomments%2Fsypw0n%2Fthe_amy_winehouse_song_valerie_was_apparently%2F&docid=DDylrXdcWuiFJM&tbnid=6hO11IGtR-uYgM&vet=12ahUKEwirhJi7qPKGAxXaH0QIHbmsBzsQM3oECE0QAA..i&w=630&h=1200&hcb=2&ved=2ahUKEwirhJi7qPKGAxXaH0QIHbmsBzsQM3oECE0QAA",
+    albumUrl: "https://i1.sndcdn.com/artworks-000047563042-hs4534-t500x500.jpg",
     owner: { id: 1, name: "John Doe" },
   },
 ];
