@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background-color: white;
+  background-color: transparent;
 }
 
 .about__container {
@@ -21,7 +21,7 @@
   border-radius: 50%;
   width: 464px;
   height: 464px;
-  margin-left: -108px;
+  margin-left: -70px;
 
   gap: 0px;
   opacity: 0px;
@@ -34,7 +34,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   margin-bottom: 13px;
-  color: black;
+  color: white;
 }
 
 .about__text-author {
