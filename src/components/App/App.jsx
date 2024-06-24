@@ -107,12 +107,6 @@ function App() {
   };
 
   // useEffect's
-  // useEffect(() => {
-  //   setCurrentUser({ name: "anthony" });
-  //   setIsLoggedIn(!!currentUser);
-
-  // });
-
   useEffect(() => {
     if (!activeModal) return;
 
