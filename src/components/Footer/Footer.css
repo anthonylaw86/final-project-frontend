@@ -11,18 +11,34 @@
   background-color: white;
   margin-top: 20px;
   align-items: center;
+  max-width: 100%;
 }
 
 .footer__text {
-  margin-left: 104px;
+  margin-left: 40px;
 }
 
 .footer__links {
-  margin-right: 104px;
+  margin-right: 40px;
 }
 
 .footer__icon-button {
   width: 24px;
   height: 24px;
   margin-left: 24px;
+}
+
+@media screen and (max-width: 410px) {
+  .footer {
+    flex-direction: column;
+  }
+
+  .footer__text {
+    margin-left: 0;
+  }
+
+  .footer__links {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
 }

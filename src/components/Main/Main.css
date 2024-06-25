@@ -25,3 +25,15 @@
   font-family: "Roboto", serif;
   font-size: 16px;
 }
+
+@media screen and (max-width: 700px) {
+  .main__greeting {
+    text-align: center;
+    font-size: 30px;
+  }
+
+  .main__greeting-summary {
+    text-align: center;
+    font-size: 14px;
+  }
+}

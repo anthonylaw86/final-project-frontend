@@ -11,6 +11,9 @@
 .card_section {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .card-section-header {
@@ -52,7 +55,24 @@
   row-gap: 18px;
   column-gap: 18px;
   list-style-type: none;
-  margin: 40px, 40px, 40px, 40px;
+
   flex-wrap: wrap;
-  padding: 40px, 40px, 40px, 40px;
+  padding: 0;
+  justify-content: center;
+}
+
+@media screen and (max-width: 350px) {
+  .card-section-header {
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 0;
+  }
+
+  .card-section-button {
+    margin-right: 0;
+  }
+
+  .card-section-text {
+    margin-left: 0;
+  }
 }

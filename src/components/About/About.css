@@ -10,6 +10,7 @@
   flex-direction: row;
   justify-content: center;
   background-color: transparent;
+  max-width: 1440px;
 }
 
 .about__container {
@@ -22,7 +23,7 @@
   width: 464px;
   height: 464px;
   margin-left: -70px;
-
+  margin-top: 20px;
   gap: 0px;
   opacity: 0px;
 }
@@ -49,4 +50,31 @@
   font-size: 18px;
   line-height: 24px;
   font-weight: 400;
+}
+
+@media screen and (max-width: 770px) {
+  .about__container {
+    flex-direction: column;
+  }
+
+  .about__avatar-image {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .about__text {
+    text-align: center;
+    margin: 0;
+  }
+
+  .about {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .about__avatar-image {
+    max-width: calc(100% - 10%);
+    max-height: calc(100% - 10%);
+  }
 }
