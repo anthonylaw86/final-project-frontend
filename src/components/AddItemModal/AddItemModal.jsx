@@ -35,7 +35,7 @@ const AddItemModal = ({ onAddItem, isOpen, onClose, buttonText, onSubmit }) => {
           className="modal__input"
           id="name"
           placeholder="Name"
-          value={values.name}
+          value={"" || values.name}
           onChange={handleChange}
           minLength="2"
           maxLength="40"
@@ -50,7 +50,7 @@ const AddItemModal = ({ onAddItem, isOpen, onClose, buttonText, onSubmit }) => {
           className="modal__input"
           id="artist"
           placeholder="Artist"
-          value={values.artist}
+          value={"" || values.artist}
           onChange={handleChange}
           minLength="2"
           maxLength="40"
@@ -65,7 +65,7 @@ const AddItemModal = ({ onAddItem, isOpen, onClose, buttonText, onSubmit }) => {
           className="modal__input"
           id="albumUrl"
           placeholder="Album URL"
-          value={values.albumUrl}
+          value={"" || values.albumUrl}
           onChange={handleChange}
           required
           name="albumUrl"

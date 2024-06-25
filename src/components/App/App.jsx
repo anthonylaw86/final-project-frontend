@@ -7,7 +7,6 @@ import { Routes, Route } from "react-router-dom";
 
 // Components
 import Main from "../Main/Main";
-import About from "../About/About";
 import Footer from "../Footer/Footer";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
@@ -19,6 +18,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 // Contexts & Constants
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import defaultMusicCards from "../../../constants/defaultMusicCards";
+import { registration, checkToken, authorization } from "../../utils/auth";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -91,36 +91,52 @@ function App() {
   // Authorization Handlers
   const handleSignUp = ({ email, password, username }) => {
     const makeRequest = () => {
-      setCurrentUser({ email, password, username });
-      setIsLoading(true);
-      setLoggedIn(true);
+      return registration({ email, password, username }).then(() => {
+        handleSignUpModal({ email, password, username });
+        setCurrentUser({ email, password, username });
+        setLoggedIn(true);
+        setIsLoading(true);
+      });
     };
     handleSubmit(makeRequest);
   };
 
   const handleLogin = ({ email, password }) => {
-    const makeRequest = () => {
-      handleLoginModal({ email, password });
-      setLoggedIn(true);
-    };
-    handleSubmit(makeRequest);
-  };
-
-  // useEffect's
-  useEffect(() => {
-    if (!activeModal) return;
-
-    const handleEscapeClose = (e) => {
-      if (e.key === "Escape") {
+    setIsLoading(true);
+    authorization(email, password)
+      .then((res) => {
+        if (res) {
+          localStorage.setItem("jwt", res.token);
+          checkToken(res.token).then((data) => {
+            setCurrentUser(data);
+            setIsLoggedIn(true);
+          });
+        }
         closeActiveModal();
-      }
-    };
-    document.addEventListener("keydown", handleEscapeClose);
+      })
+      .catch((err) => {
+        console.error("Login failed", err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
 
-    return () => {
-      document.removeEventListener("keydown", handleEscapeClose);
-    };
-  }, [activeModal]);
+    // useEffect's
+    useEffect(() => {
+      if (!activeModal) return;
+
+      const handleEscapeClose = (e) => {
+        if (e.key === "Escape") {
+          closeActiveModal();
+        }
+      };
+      document.addEventListener("keydown", handleEscapeClose);
+
+      return () => {
+        document.removeEventListener("keydown", handleEscapeClose);
+      };
+    }, [activeModal]);
+  };
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
