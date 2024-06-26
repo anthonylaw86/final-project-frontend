@@ -14,6 +14,7 @@ import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
 import Profile from "../Profile/Profile";
 import ItemModal from "../ItemModal/ItemModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import RedirectPage from "../RedirectPage/RedirectPage";
 
 // Contexts & Constants
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
@@ -170,6 +171,7 @@ function App() {
                   />
                 }
               />
+              <Route path="/postlogin" element={<RedirectPage />} />
             </Routes>
 
             <Footer />

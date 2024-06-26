@@ -1,0 +1,10 @@
+.btn-spotify {
+  text-decoration: none;
+  cursor: pointer;
+  color: rgba(3, 168, 44, 0.9);
+  font-size: 20px;
+}
+
+.App-header {
+  margin-top: 20px;
+}
