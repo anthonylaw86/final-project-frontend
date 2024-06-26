@@ -1,9 +1,25 @@
+import React, { useState, useEffect } from "react";
+
 import "./Main.css";
+
+import SpotifyLogin from "../SpotifyLogin/SpotifyLogin";
+import WebPlayback from "../WebPlayback/WebPlayback";
 import Header from "../Header/Header";
 import Player from "../Player/Player";
 import About from "../About/About";
 
 function Main({ handleLoginModal, isLoggedIn }) {
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    async function getToken() {
+      const response = await fetch("/auth/token");
+      const json = await response.json();
+      setToken(json.access_token);
+    }
+    getToken();
+  }, []);
+
   return (
     <div>
       <Header handleLoginModal={handleLoginModal} isLoggedIn={isLoggedIn} />
@@ -14,6 +30,7 @@ function Main({ handleLoginModal, isLoggedIn }) {
           up & moving today.
         </p>
         <Player />
+        <>{token === "" ? <SpotifyLogin /> : <WebPlayback token={token} />}</>
         <About />
       </div>
     </div>
