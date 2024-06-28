@@ -6,6 +6,7 @@ import "./Header.css";
 
 function Header({ handleLoginModal, isLoggedIn }) {
   const currentUser = useContext(CurrentUserContext);
+  console.log("header current user", currentUser);
 
   return (
     <div className="header__container">
@@ -22,7 +23,7 @@ function Header({ handleLoginModal, isLoggedIn }) {
           </Link>
           {isLoggedIn ? (
             <Link to="/profile" className="header__link">
-              <p className="header__username">{currentUser?.name}</p>
+              <p className="header__username">{currentUser?.username}</p>
             </Link>
           ) : (
             <button

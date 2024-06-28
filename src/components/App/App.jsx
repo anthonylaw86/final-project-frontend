@@ -21,6 +21,10 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import defaultMusicCards from "../../../constants/defaultMusicCards";
 import { registration, checkToken, authorization } from "../../utils/auth";
 
+// Utils
+import * as auth from "../../utils/auth";
+import api from "../../utils/api";
+
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
@@ -54,45 +58,102 @@ function App() {
   };
 
   // Item Handlers
-  const handleSubmit = (e) => {
-    setIsLoading(false);
-    closeActiveModal();
+  // const handleSubmit = (e) => {
+  //   setIsLoading(false);
+  //   closeActiveModal();
+  // };
+
+  const handleSubmit = (request) => {
+    setIsLoading(true);
+    request()
+      .then(() => {
+        closeActiveModal();
+      })
+      .catch((res) => {
+        console.log(`Error: ${res}`);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
+
+  // const handleAddItemSubmit = ({ name, artist, albumUrl }) => {
+  //   const newMusicItem = ({ name, artist, albumUrl }) => {
+  //     const newItem = {
+  //       id: Date.now(),
+  //       name,
+  //       artist,
+  //       albumUrl,
+  //       owner: { id: 1, name: "John Doe" },
+  //     };
+  //     setMusicCards((prevCards) => [newItem, ...prevCards]);
+  //   };
+
+  //   newMusicItem({ name, artist, albumUrl });
+  //   closeActiveModal();
+  // };
 
   const handleAddItemSubmit = ({ name, artist, albumUrl }) => {
-    const newMusicItem = ({ name, artist, albumUrl }) => {
-      const newItem = {
-        id: Date.now(),
-        name,
-        artist,
-        albumUrl,
-        owner: { id: 1, name: "John Doe" },
-      };
-      setMusicCards((prevCards) => [newItem, ...prevCards]);
+    const token = localStorage.getItem("jwt");
+    const makeRequest = () => {
+      return api
+        .addNewMusicItems({ name, artist, albumUrl }, token)
+        .then(({ data }) => {
+          setMusicCards([data, ...musicCards]);
+        });
     };
-
-    newMusicItem({ name, artist, albumUrl });
-    closeActiveModal();
+    handleSubmit(makeRequest);
   };
 
-  const handleDeleteCard = (cardId) => {
-    console.log("Deleting card with ID:", cardId);
+  // const handleDeleteCard = (cardId) => {
+  //   console.log("Deleting card with ID:", cardId);
 
-    setMusicCards((prevCards) => {
-      console.log(cardId);
-      console.log("Original cards: ", prevCards);
-      const updatedCards = prevCards.filter((card) => card.id !== cardId);
-      console.log("Updated cards: ", updatedCards);
-      return updatedCards;
-    });
+  //   setMusicCards((prevCards) => {
+  //     console.log(cardId);
+  //     console.log("Original cards: ", prevCards);
+  //     const updatedCards = prevCards.filter((card) => card.id !== cardId);
+  //     console.log("Updated cards: ", updatedCards);
+  //     return updatedCards;
+  //   });
 
-    closeActiveModal();
+  //   closeActiveModal();
+  // };
+
+  const handleDeleteCard = (card) => {
+    const token = localStorage.getItem("jwt");
+    const makeRequest = () => {
+      return api.deleteMusicItem(card._id, token).then(() => {
+        setMusicCards((cards) => cards.filter((x) => x.id !== card.id));
+      });
+    };
+    handleSubmit(makeRequest);
+  };
+
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+    !isLiked
+      ? api
+          .addLike(id, token)
+          .then((updatedCard) => {
+            setMusicCards((cards) =>
+              cards.map((item) => (item.id === id ? updatedCard.data : item))
+            );
+          })
+          .catch((err) => console.log(err))
+      : api
+          .removeLike(id, token)
+          .then((updatedCard) => {
+            setMusicCards((cards) =>
+              cards.map((item) => (item.id === id ? updatedCard.data : item))
+            );
+          })
+          .catch((err) => console.log(err));
   };
 
   // Authorization Handlers
   const handleSignUp = ({ email, password, username }) => {
     const makeRequest = () => {
-      return registration({ email, password, username }).then(() => {
+      return auth.signUp({ email, password, username }).then(() => {
         handleSignUpModal({ email, password, username });
         setCurrentUser({ email, password, username });
         setLoggedIn(true);
@@ -103,41 +164,63 @@ function App() {
   };
 
   const handleLogin = ({ email, password }) => {
-    setIsLoading(true);
-    authorization(email, password)
-      .then((res) => {
-        if (res) {
-          localStorage.setItem("jwt", res.token);
-          checkToken(res.token).then((data) => {
-            setCurrentUser(data);
-            setIsLoggedIn(true);
-          });
-        }
-        closeActiveModal();
-      })
-      .catch((err) => {
-        console.error("Login failed", err);
-      })
-      .finally(() => {
-        setIsLoading(false);
+    const makeRequest = () => {
+      return auth.signIn({ email, password }).then((res) => {
+        handleLoginModal({ email, password });
+        localStorage.setItem("jwt", res.token);
+        setLoggedIn(true);
       });
-
-    // useEffect's
-    useEffect(() => {
-      if (!activeModal) return;
-
-      const handleEscapeClose = (e) => {
-        if (e.key === "Escape") {
-          closeActiveModal();
-        }
-      };
-      document.addEventListener("keydown", handleEscapeClose);
-
-      return () => {
-        document.removeEventListener("keydown", handleEscapeClose);
-      };
-    }, [activeModal]);
+    };
+    handleSubmit(makeRequest);
   };
+
+  // const handleLogin = ({ email, password }) => {
+  //   setIsLoading(true);
+  //   authorization(email, password)
+  //     .then((res) => {
+  //       if (res) {
+  //         localStorage.setItem("jwt", res.token);
+  //         checkToken(res.token).then((data) => {
+  //           setCurrentUser(data);
+  //           setIsLoggedIn(true);
+  //         });
+  //       }
+  //       closeActiveModal();
+  //     })
+  //     .catch((err) => {
+  //       console.error("Login failed", err);
+  //     })
+  //     .finally(() => {
+  //       setIsLoading(false);
+  //     });
+  // };
+
+  // useEffect's
+  useEffect(() => {
+    api
+      .getMusicItems()
+      .then((items) => {
+        setMusicCards(items);
+      })
+      .catch((res) => {
+        console.log(`Error: ${res}`);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (!activeModal) return;
+
+    const handleEscapeClose = (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+    document.addEventListener("keydown", handleEscapeClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscapeClose);
+    };
+  }, [activeModal]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -166,7 +249,7 @@ function App() {
                     onCardDelete={handleDeleteCard}
                     handleAddClick={handleAddClick}
                     loggedIn={loggedIn}
-                    // onCardLike={handleCardLike}
+                    onCardLike={handleCardLike}
                     setLoggedIn={setLoggedIn}
                   />
                 }
