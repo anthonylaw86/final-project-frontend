@@ -8,7 +8,7 @@ import Header from "../Header/Header";
 import Player from "../Player/Player";
 import About from "../About/About";
 
-function Main({ handleLoginModal, isLoggedIn }) {
+function Main({ handleLoginModal, handleSignUpModal, isLoggedIn }) {
   const [token, setToken] = useState("");
 
   useEffect(() => {
@@ -22,14 +22,18 @@ function Main({ handleLoginModal, isLoggedIn }) {
 
   return (
     <div>
-      <Header handleLoginModal={handleLoginModal} isLoggedIn={isLoggedIn} />
+      <Header
+        handleLoginModal={handleLoginModal}
+        isLoggedIn={isLoggedIn}
+        handleSignUpModal={handleSignUpModal}
+      />
       <div className="main__content-container">
         <p className="main__greeting">March to the beat of your own drum...</p>
         <p className="main__greeting-summary">
           This is your place to listen to music, add, like & share what has you
           up & moving today.
         </p>
-        <Player />
+        {/* <Player /> */}
         <>{token === "" ? <SpotifyLogin /> : <WebPlayback token={token} />}</>
         <About />
       </div>

@@ -251,6 +251,7 @@ function App() {
                     loggedIn={loggedIn}
                     onCardLike={handleCardLike}
                     setLoggedIn={setLoggedIn}
+                    isLoggedIn={isLoggedIn}
                   />
                 }
               />

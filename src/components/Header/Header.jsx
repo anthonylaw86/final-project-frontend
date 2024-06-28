@@ -4,7 +4,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import MusicEmoji from "../../assets/musicemoji.png";
 import "./Header.css";
 
-function Header({ handleLoginModal, isLoggedIn }) {
+function Header({ handleLoginModal, handleSignUpModal, isLoggedIn }) {
   const currentUser = useContext(CurrentUserContext);
   console.log("header current user", currentUser);
 

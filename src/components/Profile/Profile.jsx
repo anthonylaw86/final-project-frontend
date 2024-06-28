@@ -10,18 +10,23 @@ function Profile({
   loggedIn,
   onCardLike,
   handleLoginModal,
-
+  handleSignUpModal,
+  isLoggedIn,
 }) {
   return (
     <div className="profile">
-      <Header setLoggedIn={setLoggedIn} handleLoginModal={handleLoginModal} />
+      <Header
+        setLoggedIn={setLoggedIn}
+        handleLoginModal={handleLoginModal}
+        isLoggedIn={isLoggedIn}
+        handleSignUpModal={handleSignUpModal}
+      />
       <CardSection
         onCardClick={onCardClick}
         cards={cards}
         handleAddClick={handleAddClick}
         loggedIn={loggedIn}
         onCardLike={onCardLike}
-  
       />
     </div>
   );
