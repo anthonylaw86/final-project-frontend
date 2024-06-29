@@ -133,10 +133,11 @@ function App() {
     handleSubmit(makeRequest);
   };
 
-  const handleLogin = ({ email, password }) => {
+  const handleLogin = ({ username, password }) => {
     const makeRequest = () => {
-      return auth.signIn({ email, password }).then((res) => {
-        handleLoginModal({ email, password });
+      return auth.signIn({ username, password }).then((res) => {
+        handleLoginModal({ username, password });
+        setCurrentUser({ username, password });
         localStorage.setItem("jwt", res.token);
         setLoggedIn(true);
       });

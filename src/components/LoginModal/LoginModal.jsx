@@ -8,11 +8,11 @@ const LoginModal = ({
   handleSignUpModal,
   buttonText,
 }) => {
-  const [email, setEmail] = useState("");
+  const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+  const handleUserNameChange = (e) => {
+    setUserName(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
@@ -21,14 +21,14 @@ const LoginModal = ({
 
   useEffect(() => {
     if (isOpen) {
-      setEmail("");
+      setUserName("");
       setPassword("");
     }
   }, [isOpen]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    handleLogin({ email, password });
+    handleLogin({ username, password });
   }
 
   return (
@@ -42,16 +42,16 @@ const LoginModal = ({
       orModal={handleSignUpModal}
     >
       <label className="modal__label">
-        Email
+        User Name
         <input
-          type="email"
-          name="email"
-          value={email}
+          type="text"
+          name="username"
+          value={username}
           minLength="2"
           maxLength="40"
-          placeholder="Email"
+          placeholder="User Name"
           className="modal__input"
-          onChange={handleEmailChange}
+          onChange={handleUserNameChange}
           required
         />
       </label>

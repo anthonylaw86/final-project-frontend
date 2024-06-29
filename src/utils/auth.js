@@ -38,12 +38,12 @@ export const signUp = ({ email, password, username }) => {
   });
 };
 
-export const signIn = ({ email, password }) => {
+export const signIn = ({ username, password }) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const users = JSON.parse(localStorage.getItem("users")) || [];
       const user = users.find(
-        (user) => user.email === email && user.password === password
+        (user) => user.username === username && user.password === password
       );
 
       if (user) {
