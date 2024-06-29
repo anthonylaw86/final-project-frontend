@@ -19,7 +19,7 @@ import RedirectPage from "../RedirectPage/RedirectPage";
 // Contexts & Constants
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import defaultMusicCards from "../../../constants/defaultMusicCards";
-import { registration, checkToken, authorization } from "../../utils/auth";
+import { checkToken } from "../../utils/auth";
 
 // Utils
 import * as auth from "../../utils/auth";
@@ -98,36 +98,36 @@ function App() {
     const makeRequest = () => {
       return api
         .addNewMusicItems({ name, artist, albumUrl }, token)
-        .then(({ data }) => {
+        .then((data) => {
           setMusicCards([data, ...musicCards]);
         });
     };
     handleSubmit(makeRequest);
   };
 
-  // const handleDeleteCard = (cardId) => {
-  //   console.log("Deleting card with ID:", cardId);
+  const handleDeleteCard = (cardId) => {
+    console.log("Deleting card with ID:", cardId);
 
-  //   setMusicCards((prevCards) => {
-  //     console.log(cardId);
-  //     console.log("Original cards: ", prevCards);
-  //     const updatedCards = prevCards.filter((card) => card.id !== cardId);
-  //     console.log("Updated cards: ", updatedCards);
-  //     return updatedCards;
-  //   });
+    setMusicCards((prevCards) => {
+      console.log(cardId);
+      console.log("Original cards: ", prevCards);
+      const updatedCards = prevCards.filter((card) => card.id !== cardId);
+      console.log("Updated cards: ", updatedCards);
+      return updatedCards;
+    });
 
-  //   closeActiveModal();
-  // };
-
-  const handleDeleteCard = (card) => {
-    const token = localStorage.getItem("jwt");
-    const makeRequest = () => {
-      return api.deleteMusicItem(card._id, token).then(() => {
-        setMusicCards((cards) => cards.filter((x) => x.id !== card.id));
-      });
-    };
-    handleSubmit(makeRequest);
+    closeActiveModal();
   };
+
+  // const handleDeleteCard = (card) => {
+  //   const token = localStorage.getItem("jwt");
+  //   const makeRequest = () => {
+  //     return api.deleteMusicItem(card._id, token).then(() => {
+  //       setMusicCards((cards) => cards.filter((x) => x.id !== card.id));
+  //     });
+  //   };
+  //   handleSubmit(makeRequest);
+  // };
 
   const handleCardLike = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
@@ -199,8 +199,8 @@ function App() {
 
   // useEffect's
   useEffect(() => {
-    localStorage.clear();
-    console.log("local storage cleared");
+    // localStorage.clear();
+    // console.log("local storage cleared");
 
     const storedUser = JSON.parse(localStorage.getItem("currentUser"));
     if (storedUser) {
@@ -269,7 +269,7 @@ function App() {
                   />
                 }
               />
-              <Route path="/postlogin" element={<RedirectPage />} />
+              <Route path="/post-login" element={<RedirectPage />} />
             </Routes>
 
             <Footer />

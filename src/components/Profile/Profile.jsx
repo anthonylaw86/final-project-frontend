@@ -1,7 +1,11 @@
 import "./Profile.css";
+
+import { useEffect, useState } from "react";
+
 import Header from "../Header/Header";
 import CardSection from "../CardSection/CardSection";
-import { useEffect } from "react";
+import SpotifyLogin from "../SpotifyLogin/SpotifyLogin";
+import WebPlayback from "../WebPlayback/WebPlayback";
 
 function Profile({
   onCardClick,
@@ -13,6 +17,17 @@ function Profile({
   handleLoginModal,
   handleSignUpModal,
 }) {
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    async function getToken() {
+      const response = await fetch("/auth/token");
+      const json = await response.json();
+      setToken(json.access_token);
+    }
+    getToken();
+  }, []);
+
   useEffect(() => {
     console.log("Cards:", cards);
   }, [cards]);
@@ -25,6 +40,13 @@ function Profile({
         isLoggedIn={loggedIn}
         handleSignUpModal={handleSignUpModal}
       />
+      <>
+        {token === "" ? (
+          <SpotifyLogin  />
+        ) : (
+          <WebPlayback token={token}  />
+        )}
+      </>
       <CardSection
         onCardClick={onCardClick}
         cards={cards}

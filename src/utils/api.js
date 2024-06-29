@@ -68,6 +68,7 @@ const removeLike = (id) => {
   });
 };
 
+// FOR BACKEND
 // const getMusicItems = () => {
 //   return fetch(`${baseUrl}/items`, {
 //     method: "GET",

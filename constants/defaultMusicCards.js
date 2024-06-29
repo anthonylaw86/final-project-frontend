@@ -24,6 +24,4 @@ const defaultMusicCards = [
   },
 ];
 
-const currentUser = { id: 1, name: "John Doe" };
-
 export default defaultMusicCards;

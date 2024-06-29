@@ -3,8 +3,14 @@
   cursor: pointer;
   color: rgba(3, 168, 44, 0.9);
   font-size: 20px;
+  margin: 0;
+  margin-bottom: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
 }
 
 .App-header {
   margin-top: 20px;
+  display: flex;
 }
