@@ -157,7 +157,6 @@ function App() {
         handleSignUpModal({ email, password, username });
         setCurrentUser({ email, password, username });
         setLoggedIn(true);
-        setIsLoading(true);
       });
     };
     handleSubmit(makeRequest);
@@ -235,6 +234,7 @@ function App() {
                     handleLoginModal={handleLoginModal}
                     handleSignUpModal={handleSignUpModal}
                     isLoggedIn={isLoggedIn}
+                    loggedIn={loggedIn}
                   />
                 }
               />

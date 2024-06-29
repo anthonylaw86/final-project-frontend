@@ -18,7 +18,7 @@ function Profile({
       <Header
         setLoggedIn={setLoggedIn}
         handleLoginModal={handleLoginModal}
-        isLoggedIn={isLoggedIn}
+        isLoggedIn={loggedIn}
         handleSignUpModal={handleSignUpModal}
       />
       <CardSection

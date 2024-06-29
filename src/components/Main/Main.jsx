@@ -8,7 +8,7 @@ import Header from "../Header/Header";
 import Player from "../Player/Player";
 import About from "../About/About";
 
-function Main({ handleLoginModal, handleSignUpModal, isLoggedIn }) {
+function Main({ handleLoginModal, handleSignUpModal, loggedIn }) {
   const [token, setToken] = useState("");
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function Main({ handleLoginModal, handleSignUpModal, isLoggedIn }) {
     <div>
       <Header
         handleLoginModal={handleLoginModal}
-        isLoggedIn={isLoggedIn}
+        isLoggedIn={loggedIn}
         handleSignUpModal={handleSignUpModal}
       />
       <div className="main__content-container">
