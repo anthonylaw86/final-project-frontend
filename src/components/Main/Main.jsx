@@ -8,7 +8,7 @@ import Header from "../Header/Header";
 import Player from "../Player/Player";
 import About from "../About/About";
 
-function Main({ handleLoginModal, handleSignUpModal, loggedIn }) {
+function Main({ handleLoginModal, handleSignUpModal, loggedIn, currentUser }) {
   const [token, setToken] = useState("");
 
   useEffect(() => {
@@ -26,6 +26,7 @@ function Main({ handleLoginModal, handleSignUpModal, loggedIn }) {
         handleLoginModal={handleLoginModal}
         isLoggedIn={loggedIn}
         handleSignUpModal={handleSignUpModal}
+        currentUser={currentUser}
       />
       <div className="main__content-container">
         <p className="main__greeting">March to the beat of your own drum...</p>

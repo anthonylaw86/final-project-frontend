@@ -1,6 +1,7 @@
 import "./Profile.css";
 import Header from "../Header/Header";
 import CardSection from "../CardSection/CardSection";
+import { useEffect } from "react";
 
 function Profile({
   onCardClick,
@@ -11,8 +12,11 @@ function Profile({
   onCardLike,
   handleLoginModal,
   handleSignUpModal,
-  isLoggedIn,
 }) {
+  useEffect(() => {
+    console.log("Cards:", cards);
+  }, [cards]);
+
   return (
     <div className="profile">
       <Header

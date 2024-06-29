@@ -9,16 +9,15 @@ const RegisterModal = ({
   buttonText,
 }) => {
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
-
-  const [password, setPassword] = useState("");
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
-
-  const [username, setUsername] = useState("");
   const handleNameChange = (e) => {
     setUsername(e.target.value);
   };

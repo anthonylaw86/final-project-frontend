@@ -8,7 +8,7 @@ function CardSection({
   cards,
   handleAddClick,
   loggedIn,
-  onCardLike,
+  // onCardLike,
 }) {
   const currentUser = useContext(
     CurrentUserContext || { id: 1, name: "Test User" }
@@ -18,9 +18,7 @@ function CardSection({
 
   console.log("currentUser", currentUser);
 
-  const userCards = cards.filter(
-    (item) => item.owner && item.owner.id === currentUser
-  );
+  const userCards = cards.filter((item) => item === currentUser);
 
   console.log("Filtered userCards:", userCards);
 
@@ -41,7 +39,7 @@ function CardSection({
               item={item}
               onCardClick={onCardClick}
               loggedIn={loggedIn}
-              onCardLike={onCardLike}
+              // onCardLike={onCardLike}
             />
           );
         })}

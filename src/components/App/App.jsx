@@ -152,11 +152,14 @@ function App() {
 
   // Authorization Handlers
   const handleSignUp = ({ email, password, username }) => {
+    setIsLoading(false);
     const makeRequest = () => {
-      return auth.signUp({ email, password, username }).then(() => {
+      return auth.signUp({ email, password, username }).then((res) => {
+        console.log(res.message);
         handleSignUpModal({ email, password, username });
         setCurrentUser({ email, password, username });
         setLoggedIn(true);
+        closeActiveModal();
       });
     };
     handleSubmit(makeRequest);
@@ -196,6 +199,16 @@ function App() {
 
   // useEffect's
   useEffect(() => {
+    localStorage.clear();
+    console.log("local storage cleared");
+
+    const storedUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (storedUser) {
+      setCurrentUser(storedUser);
+    }
+  }, []);
+
+  useEffect(() => {
     api
       .getMusicItems()
       .then((items) => {
@@ -231,6 +244,7 @@ function App() {
                 path="/"
                 element={
                   <Main
+                    currentUser={currentUser}
                     handleLoginModal={handleLoginModal}
                     handleSignUpModal={handleSignUpModal}
                     isLoggedIn={isLoggedIn}

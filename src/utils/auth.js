@@ -1,13 +1,31 @@
 import { baseUrl } from "./api";
 import { checkResponse } from "./api";
 
+// export const signUp = ({ email, password, username }) => {
+//   return new Promise((resolve, reject) => {
+//     // Simulate a delay for the server response
+//     setTimeout(() => {
+//       const users = JSON.parse(localStorage.getItem("users")) || [];
+
+//       // Check if the user already exists
+//       if (users.some((user) => user.email === email)) {
+//         reject({ message: "User already exists" });
+//       } else {
+//         const newUser = { email, password, username };
+//         users.push(newUser);
+//         localStorage.setItem("users", JSON.stringify(users));
+//         resolve({ message: "User registered successfully" });
+//       }
+//     }, 500);
+//   });
+// };
+
 export const signUp = ({ email, password, username }) => {
   return new Promise((resolve, reject) => {
-    // Simulate a delay for the server response
     setTimeout(() => {
       const users = JSON.parse(localStorage.getItem("users")) || [];
+      console.log("Existing users: ", users); // Log existing users for debugging
 
-      // Check if the user already exists
       if (users.some((user) => user.email === email)) {
         reject({ message: "User already exists" });
       } else {
@@ -15,28 +33,6 @@ export const signUp = ({ email, password, username }) => {
         users.push(newUser);
         localStorage.setItem("users", JSON.stringify(users));
         resolve({ message: "User registered successfully" });
-      }
-    }, 500);
-  });
-};
-
-export const signIn = ({ email, password }) => {
-  return new Promise((resolve, reject) => {
-    // Simulate a delay for the server response
-    setTimeout(() => {
-      const users = JSON.parse(localStorage.getItem("users")) || [];
-      const user = users.find(
-        (user) => user.email === email && user.password === password
-      );
-
-      if (user) {
-        resolve({
-          message: "Sign in successful",
-          token: "fake-jwt-token",
-          user,
-        });
-      } else {
-        reject({ message: "Invalid email or password" });
       }
     }, 500);
   });
