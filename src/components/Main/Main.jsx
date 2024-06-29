@@ -12,11 +12,27 @@ function Main({ handleLoginModal, handleSignUpModal, loggedIn, currentUser }) {
   const [token, setToken] = useState("");
 
   useEffect(() => {
-    async function getToken() {
-      const response = await fetch("/auth/token");
-      const json = await response.json();
-      setToken(json.access_token);
-    }
+    const getToken = async () => {
+      try {
+        const response = await fetch("/auth/token");
+        debugger;
+        const text = await response.text();
+
+        // Attempt to parse JSON
+        let json;
+        try {
+          json = JSON.parse(text);
+        } catch (error) {
+          console.error("Response is not valid JSON:", text);
+          throw new Error("Invalid JSON response");
+        }
+
+        setToken(json.access_token);
+      } catch (error) {
+        console.error("Failed to fetch token:", error);
+      }
+    };
+
     getToken();
   }, []);
 
