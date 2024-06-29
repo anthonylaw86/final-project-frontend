@@ -1,10 +1,13 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import MusicEmoji from "../../assets/musicemoji.png";
 import "./Header.css";
 
-function Header({ handleLoginModal, handleSignUpModal, isLoggedIn }) {
+import React, { useContext } from "react";
+
+import { Link } from "react-router-dom";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+
+import MusicEmoji from "../../assets/musicemoji.png";
+
+function Header({ handleLoginModal, isLoggedIn }) {
   const currentUser = useContext(CurrentUserContext);
   console.log("header current user", currentUser);
 

@@ -35,7 +35,6 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(false);
 
   // Modal Handlers
-
   const closeActiveModal = () => {
     setActiveModal("");
   };
@@ -58,11 +57,6 @@ function App() {
   };
 
   // Item Handlers
-  // const handleSubmit = (e) => {
-  //   setIsLoading(false);
-  //   closeActiveModal();
-  // };
-
   const handleSubmit = (request) => {
     setIsLoading(true);
     request()
@@ -76,22 +70,6 @@ function App() {
         setIsLoading(false);
       });
   };
-
-  // const handleAddItemSubmit = ({ name, artist, albumUrl }) => {
-  //   const newMusicItem = ({ name, artist, albumUrl }) => {
-  //     const newItem = {
-  //       id: Date.now(),
-  //       name,
-  //       artist,
-  //       albumUrl,
-  //       owner: { id: 1, name: "John Doe" },
-  //     };
-  //     setMusicCards((prevCards) => [newItem, ...prevCards]);
-  //   };
-
-  //   newMusicItem({ name, artist, albumUrl });
-  //   closeActiveModal();
-  // };
 
   const handleAddItemSubmit = ({ name, artist, albumUrl }) => {
     const token = localStorage.getItem("jwt");
@@ -118,16 +96,6 @@ function App() {
 
     closeActiveModal();
   };
-
-  // const handleDeleteCard = (card) => {
-  //   const token = localStorage.getItem("jwt");
-  //   const makeRequest = () => {
-  //     return api.deleteMusicItem(card._id, token).then(() => {
-  //       setMusicCards((cards) => cards.filter((x) => x.id !== card.id));
-  //     });
-  //   };
-  //   handleSubmit(makeRequest);
-  // };
 
   const handleCardLike = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
@@ -175,27 +143,6 @@ function App() {
     };
     handleSubmit(makeRequest);
   };
-
-  // const handleLogin = ({ email, password }) => {
-  //   setIsLoading(true);
-  //   authorization(email, password)
-  //     .then((res) => {
-  //       if (res) {
-  //         localStorage.setItem("jwt", res.token);
-  //         checkToken(res.token).then((data) => {
-  //           setCurrentUser(data);
-  //           setIsLoggedIn(true);
-  //         });
-  //       }
-  //       closeActiveModal();
-  //     })
-  //     .catch((err) => {
-  //       console.error("Login failed", err);
-  //     })
-  //     .finally(() => {
-  //       setIsLoading(false);
-  //     });
-  // };
 
   // useEffect's
   useEffect(() => {

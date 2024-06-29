@@ -1,15 +1,11 @@
-import ItemCard from "../ItemCard/ItemCard";
 import "./CardSection.css";
+
+import ItemCard from "../ItemCard/ItemCard";
+
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function CardSection({
-  onCardClick,
-  cards,
-  handleAddClick,
-  loggedIn,
-  // onCardLike,
-}) {
+function CardSection({ onCardClick, cards, handleAddClick, loggedIn }) {
   const currentUser = useContext(
     CurrentUserContext || { id: 1, name: "Test User" }
   );
@@ -39,7 +35,6 @@ function CardSection({
               item={item}
               onCardClick={onCardClick}
               loggedIn={loggedIn}
-              // onCardLike={onCardLike}
             />
           );
         })}

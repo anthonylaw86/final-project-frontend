@@ -1,23 +1,22 @@
-import React, {useEffect} from 'react';
-import {useNavigate} from 'react-router-dom';
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function RedirectPage() {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        const getCodeFromURL = () => {
-            const params = new URLSearchParams(window.location.search)
-            return params.get('code')
-        }    
-        const code = getCodeFromURL()
-        if (code) {
-            localStorage.setItem('authCode', code)
-            navigate('/')
-        }
-    }, [navigate])
+  useEffect(() => {
+    const getCodeFromURL = () => {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("token");
+    };
+    const token = getCodeFromURL();
+    if (token) {
+      localStorage.setItem("authCode", token);
+      navigate("/");
+    }
+  }, [navigate]);
 
-    return null
-
+  return null;
 }
 
 export default RedirectPage;
