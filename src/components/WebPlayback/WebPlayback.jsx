@@ -12,8 +12,10 @@ const track = {
 function WebPlayback(props) {
   const [is_paused, setPaused] = useState(false);
   const [is_active, setActive] = useState(false);
-  const [player, setPlayer] = useState(undefined);
+  const [player, setPlayer] = useState("");
   const [current_track, setTrack] = useState(track);
+
+  console.log("player", player);
 
   useEffect(() => {
     const script = document.createElement("script");
