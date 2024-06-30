@@ -9,7 +9,7 @@ const track = {
   artists: [{ name: "" }],
 };
 
-function WebPlayback(props, { token }) {
+function WebPlayback(props) {
   const [is_paused, setPaused] = useState(false);
   const [is_active, setActive] = useState(false);
   const [player, setPlayer] = useState(undefined);
@@ -36,7 +36,7 @@ function WebPlayback(props, { token }) {
       player.addListener("ready", ({ device_id }) => {
         console.log("Ready with Device ID", device_id);
         // Transfer playback here
-        transferPlaybackHere(token, device_id);
+        transferPlaybackHere(props.token, device_id);
       });
 
       player.addListener("not_ready", ({ device_id }) => {
