@@ -11,6 +11,7 @@ function RedirectPage() {
     };
     const token = getCodeFromURL();
     if (token) {
+      console.log('retrieved token', token)
       localStorage.setItem("authCode", token);
       navigate("/");
     }

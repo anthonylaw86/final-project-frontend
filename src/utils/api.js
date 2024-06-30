@@ -68,6 +68,17 @@ const removeLike = (id) => {
   });
 };
 
+const fetchToken = async () => {
+  const response = await fetch(`${baseUrl}/auth/token`);
+
+  if (!response.ok) {
+    throw new Error("Network response was not okay");
+  }
+
+  const json = await response.json();
+  setToken(json.access_token);
+};
+
 // FOR BACKEND
 // const getMusicItems = () => {
 //   return fetch(`${baseUrl}/items`, {
@@ -123,6 +134,7 @@ const api = {
   addNewMusicItems,
   getMusicItems,
   deleteMusicItem,
+  fetchToken,
 };
 
 export default api;

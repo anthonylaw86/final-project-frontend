@@ -8,14 +8,21 @@ import Header from "../Header/Header";
 import Player from "../Player/Player";
 import About from "../About/About";
 
+import api from "../../utils/api";
+
 function Main({ handleLoginModal, handleSignUpModal, loggedIn, currentUser }) {
   const [token, setToken] = useState("");
 
   useEffect(() => {
     const getToken = async () => {
       try {
-        const response = await fetch("/auth/token");
-        debugger;
+        const response = await fetch("http://localhost:3001/auth/token", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
         const text = await response.text();
 
         // Attempt to parse JSON

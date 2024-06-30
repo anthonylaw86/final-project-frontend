@@ -8,7 +8,7 @@ const track = {
   artists: [{ name: "" }],
 };
 
-function WebPlayback(props) {
+function WebPlayback(props, { token }) {
   const [is_paused, setPaused] = useState(false);
   const [is_active, setActive] = useState(false);
   const [player, setPlayer] = useState(undefined);
@@ -34,6 +34,8 @@ function WebPlayback(props) {
 
       player.addListener("ready", ({ device_id }) => {
         console.log("Ready with Device ID", device_id);
+        // Transfer playback here
+        transferPlaybackHere(token, device_id);
       });
 
       player.addListener("not_ready", ({ device_id }) => {
@@ -56,6 +58,23 @@ function WebPlayback(props) {
       player.connect();
     };
   }, []);
+
+  const transferPlaybackHere = (token, deviceId) => {
+    fetch("https://api.spotify.com/v1/me/player", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        device_ids: [deviceId],
+        play: true,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log("Transfer Playback Response:", data))
+      .catch((error) => console.error("Transfer Playback Error:", error));
+  };
 
   if (!is_active) {
     return (
