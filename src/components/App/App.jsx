@@ -10,7 +10,7 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
-import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
+
 import Profile from "../Profile/Profile";
 import ItemModal from "../ItemModal/ItemModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
@@ -18,7 +18,7 @@ import RedirectPage from "../RedirectPage/RedirectPage";
 
 // Contexts & Constants
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { checkToken } from "../../utils/auth";
+
 import defaultMusicCards from "../../../constants/defaultMusicCards";
 
 // Utils
@@ -147,9 +147,6 @@ function App() {
 
   // useEffect's
   useEffect(() => {
-    // localStorage.clear();
-    // console.log("local storage cleared");
-
     const storedUser = JSON.parse(localStorage.getItem("currentUser"));
     if (storedUser) {
       setCurrentUser(storedUser);
