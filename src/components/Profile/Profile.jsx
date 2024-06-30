@@ -40,13 +40,7 @@ function Profile({
         isLoggedIn={loggedIn}
         handleSignUpModal={handleSignUpModal}
       />
-      <>
-        {token === "" ? (
-          <SpotifyLogin  />
-        ) : (
-          <WebPlayback token={token}  />
-        )}
-      </>
+
       <CardSection
         onCardClick={onCardClick}
         cards={cards}
