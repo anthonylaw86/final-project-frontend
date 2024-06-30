@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  text-align: center;
+}
+
+.now-playing__name {
+  font-size: 30px;
+}
+
+.now-playing__artist {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.btn-spotify {
+  background-color: transparent;
+  gap: 10px;
+}
