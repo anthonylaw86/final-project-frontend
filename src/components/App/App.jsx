@@ -19,6 +19,7 @@ import RedirectPage from "../RedirectPage/RedirectPage";
 // Contexts & Constants
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { checkToken } from "../../utils/auth";
+import defaultMusicCards from "../../../constants/defaultMusicCards";
 
 // Utils
 import * as auth from "../../utils/auth";
@@ -27,7 +28,7 @@ import api from "../../utils/api";
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
-  const [musicCards, setMusicCards] = useState();
+  const [musicCards, setMusicCards] = useState(defaultMusicCards);
   const [loggedIn, setLoggedIn] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(!!currentUser);
   const [selectedCard, setSelectedCard] = useState({});
