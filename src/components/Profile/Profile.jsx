@@ -1,6 +1,6 @@
 import "./Profile.css";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import Header from "../Header/Header";
 import CardSection from "../CardSection/CardSection";

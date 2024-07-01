@@ -5,10 +5,7 @@ import "./Main.css";
 import SpotifyLogin from "../SpotifyLogin/SpotifyLogin";
 import WebPlayback from "../WebPlayback/WebPlayback";
 import Header from "../Header/Header";
-import Player from "../Player/Player";
 import About from "../About/About";
-
-import api from "../../utils/api";
 
 function Main({ handleLoginModal, handleSignUpModal, loggedIn, currentUser }) {
   const [token, setToken] = useState("");
@@ -57,7 +54,7 @@ function Main({ handleLoginModal, handleSignUpModal, loggedIn, currentUser }) {
           This is your place to listen to music, add, like & share what has you
           up & moving today.
         </p>
-        {/* <Player /> */}
+
         <>{token === "" ? <SpotifyLogin /> : <WebPlayback token={token} />}</>
         <About />
       </div>
