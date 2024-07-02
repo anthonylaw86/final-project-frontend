@@ -13,7 +13,7 @@ const About = () => {
             HTML, CSS, Node, & Express.
             <br></br>
             <br></br>My work history was in the hospitality industry, lastly as
-            a bar manager. About a year or more ago I decided to leave & try
+            a bar manager, and about a year or more ago I decided to leave & try
             something new. I started learning to code at TripleTen bootcamp.
             Where I've learned thorough theory and project's how to handle a
             different number of programming tasks. I'm looking to hone my skills
