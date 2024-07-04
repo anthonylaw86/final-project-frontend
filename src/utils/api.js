@@ -1,8 +1,11 @@
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.beatapp.strangled.net"
+    : "http://localhost:3001";
+
 export const checkResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(`Error ${res.status}`);
 };
-
-export const baseUrl = "http://localhost:3001";
 
 const getMusicItems = () => {
   return new Promise((resolve) => {

@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://anthonylaw86.github.io/final-project-frontend",
+  "homepage": "http://beatapp.strangled.net",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
