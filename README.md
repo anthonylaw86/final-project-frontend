@@ -13,4 +13,4 @@ https://github.com/anthonylaw86/final-project-backend
 
 ## Frontend is deployed at
 
-https://anthonylaw86.github.io/final-project-frontend/
+https://beatapp.strangled.net
