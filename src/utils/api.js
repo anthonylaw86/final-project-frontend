@@ -3,6 +3,11 @@ export const baseUrl =
     ? "https://api.beatapp.strangled.net"
     : "http://localhost:3001";
 
+export const loginUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://beatapp.strangled.net/auth/login"
+    : "https://localhost:3001/auth/login";
+
 export const checkResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(`Error ${res.status}`);
 };

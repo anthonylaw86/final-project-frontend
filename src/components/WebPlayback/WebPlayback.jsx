@@ -53,7 +53,7 @@ function WebPlayback(props) {
         setTrack(state.track_window.current_track);
         setPaused(state.paused);
 
-        player?.getCurrentState().then((state) => {
+        player.getCurrentState().then((state) => {
           !state ? setActive(false) : setActive(true);
         });
       });
@@ -108,33 +108,6 @@ function WebPlayback(props) {
               <div className="now-playing__artist">
                 {current_track.artists[0].name}
               </div>
-
-              <button
-                className="btn-spotify"
-                onClick={() => {
-                  player.previousTrack();
-                }}
-              >
-                &lt;&lt;
-              </button>
-
-              <button
-                className="btn-spotify"
-                onClick={() => {
-                  player.togglePlay();
-                }}
-              >
-                {is_paused ? "PLAY" : "PAUSE"}
-              </button>
-
-              <button
-                className="btn-spotify"
-                onClick={() => {
-                  player.nextTrack();
-                }}
-              >
-                &gt;&gt;
-              </button>
             </div>
           </div>
         </div>
