@@ -16,3 +16,14 @@
   background-color: transparent;
   gap: 10px;
 }
+
+@media screen and (max-width: 666px) {
+  .now-playing__cover {
+    width: calc(100% - 10%);
+    height: calc(100% - 10%);
+  }
+
+  .now-playing__name {
+    font-size: 20px;
+  }
+}
