@@ -9,7 +9,6 @@ import MusicEmoji from "../../assets/musicemoji.png";
 
 function Header({ handleLoginModal, isLoggedIn }) {
   const currentUser = useContext(CurrentUserContext);
-  console.log("header current user", currentUser);
 
   return (
     <div className="header__container">

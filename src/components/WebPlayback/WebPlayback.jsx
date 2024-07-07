@@ -15,8 +15,6 @@ function WebPlayback(props) {
   const [player, setPlayer] = useState("");
   const [current_track, setTrack] = useState(track);
 
-  console.log("player", player);
-
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://sdk.scdn.co/spotify-player.js";
