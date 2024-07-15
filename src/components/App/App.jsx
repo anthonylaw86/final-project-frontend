@@ -10,7 +10,7 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
-
+import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
 import Profile from "../Profile/Profile";
 import ItemModal from "../ItemModal/ItemModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
@@ -200,6 +200,7 @@ function App() {
               <Route
                 path="/profile"
                 element={
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
                   <Profile
                     handleLoginModal={handleLoginModal}
                     handleSignUpModal={handleSignUpModal}
@@ -212,6 +213,7 @@ function App() {
                     setLoggedIn={setLoggedIn}
                     isLoggedIn={isLoggedIn}
                   />
+                  </ProtectedRoute>
                 }
               />
               <Route path="/post-login" element={<RedirectPage />} />
