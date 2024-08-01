@@ -200,19 +200,19 @@ function App() {
               <Route
                 path="/profile"
                 element={
-                  <ProtectedRoute isLoggedIn={isLoggedIn}>
-                  <Profile
-                    handleLoginModal={handleLoginModal}
-                    handleSignUpModal={handleSignUpModal}
-                    onCardClick={handleCardClick}
-                    cards={musicCards}
-                    onCardDelete={handleDeleteCard}
-                    handleAddClick={handleAddClick}
-                    loggedIn={loggedIn}
-                    onCardLike={handleCardLike}
-                    setLoggedIn={setLoggedIn}
-                    isLoggedIn={isLoggedIn}
-                  />
+                  <ProtectedRoute loggedIn={loggedIn}>
+                    <Profile
+                      handleLoginModal={handleLoginModal}
+                      handleSignUpModal={handleSignUpModal}
+                      onCardClick={handleCardClick}
+                      cards={musicCards}
+                      onCardDelete={handleDeleteCard}
+                      handleAddClick={handleAddClick}
+                      loggedIn={loggedIn}
+                      onCardLike={handleCardLike}
+                      setLoggedIn={setLoggedIn}
+                      isLoggedIn={isLoggedIn}
+                    />
                   </ProtectedRoute>
                 }
               />

@@ -1,5 +1,10 @@
 .profile {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
+.spotify {
+  display: flex;
+  justify-content: center;
+}

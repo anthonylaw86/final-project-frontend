@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Roboto";
-  src: url("../../vendor/Roboto-Medium.woff");
+  src: url("../../vendor/RobotoSlab-Regular.woff");
 }
 
 @font-face {
@@ -12,7 +12,7 @@
   overflow: hidden;
   padding: 0;
   margin: 0;
-  background-color: black;
+  background-color: white;
 }
 
 .modal__image {
@@ -45,7 +45,7 @@
 }
 
 .modal__song {
-  margin-top: 19px;
+  margin-top: 22px;
   margin-bottom: 12px;
   margin-left: 20px;
   font-family: "Playwrite";
@@ -54,15 +54,16 @@
 
 .modal__artist {
   margin: 0;
-  margin-top: 15px;
+  margin-top: 10px;
   margin-bottom: 20px;
   margin-left: 20px;
-  color: white;
+  font-size: 21px;
+  color: rgba(29, 29, 30, 0.9);
 }
 
 .modal__button {
   position: absolute;
-  bottom: 20px;
+  bottom: 40px;
   left: 355px;
   background-color: transparent;
   border: none;
