@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function RedirectPage() {
+function RedirectPage({ setLoggedIn, setCurrentUser }) {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -11,11 +11,19 @@ function RedirectPage() {
     };
     const token = getCodeFromURL();
     if (token) {
-      console.log('retrieved token', token)
       localStorage.setItem("authCode", token);
-      navigate("/profile");
+      auth
+        .getCurrentUser(token)
+        .then((user) => {
+          setCurrentUser(user);
+          setLoggedIn(true);
+          navigate("/profile");
+        })
+        .catch((err) => {
+          console.log("Error retrieving user data", err);
+        });
     }
-  }, [navigate]);
+  }, [navigate, setLoggedIn, setCurrentUser]);
 
   return null;
 }

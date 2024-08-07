@@ -30,7 +30,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [musicCards, setMusicCards] = useState(defaultMusicCards);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(currentUser);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [selectedCard, setSelectedCard] = useState({});
   const [isLoading, setIsLoading] = React.useState(false);
 
@@ -217,7 +217,15 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route path="/post-login" element={<RedirectPage />} />
+              <Route
+                path="/post-login"
+                element={
+                  <RedirectPage
+                    setLoggedIn={setLoggedIn}
+                    setCurrentUser={setCurrentUser}
+                  />
+                }
+              />
             </Routes>
 
             <Footer />
