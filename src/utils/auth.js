@@ -11,13 +11,13 @@ export const signUp = ({ email, password, username }) => {
   }).then(checkResponse);
 };
 
-export const signIn = ({ email, password }) => {
+export const signIn = ({ username, password }) => {
   return fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ username, password }),
   }).then(checkResponse);
 };
 

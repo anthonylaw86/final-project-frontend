@@ -178,7 +178,7 @@ function App() {
       document.removeEventListener("keydown", handleEscapeClose);
     };
   }, [activeModal]);
-  console.log(loggedIn);
+  console.log(currentUser);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
