@@ -3,11 +3,9 @@ import { useNavigate } from "react-router-dom";
 import * as auth from "../../utils/auth";
 
 function RedirectPage({ setLoggedIn, setCurrentUser }) {
- 
   const navigate = useNavigate();
 
   useEffect(() => {
-    debugger;
     const getCodeFromURL = () => {
       const params = new URLSearchParams(window.location.search);
       return params.get("token");

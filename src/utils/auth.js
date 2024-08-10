@@ -32,7 +32,7 @@ export const checkToken = (token) => {
 };
 
 export const getCurrentUser = (token) => {
-  return fetch(`${baseUrl}/me`, {
+  return fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
