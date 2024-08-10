@@ -38,7 +38,7 @@ export const getCurrentUser = (token) => {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  });
+  }).then(checkResponse);
 };
 
 //-----------Mock Server-------//
