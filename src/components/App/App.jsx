@@ -83,18 +83,26 @@ function App() {
     handleSubmit(makeRequest);
   };
 
-  const handleDeleteCard = (cardId) => {
-    console.log("Deleting card with ID:", cardId);
+  const handleDeleteCard = (card) => {
+    const token = localStorage.getItem("jwt");
+    const makeRequest = () => {
+      return api.deleteMusicItem(card._id, token).then(() => {
+        setMusicCards((cards) => cards.filter((x) => x._id !== card._id));
+      });
+    };
+    handleSubmit(makeRequest);
 
-    setMusicCards((prevCards) => {
-      console.log(cardId);
-      console.log("Original cards: ", prevCards);
-      const updatedCards = prevCards.filter((card) => card.id !== cardId);
-      console.log("Updated cards: ", updatedCards);
-      return updatedCards;
-    });
+    // console.log("Deleting card with ID:", cardId);
 
-    closeActiveModal();
+    // setMusicCards((prevCards) => {
+    //   console.log(cardId);
+    //   console.log("Original cards: ", prevCards);
+    //   const updatedCards = prevCards.filter((card) => card.id !== cardId);
+    //   console.log("Updated cards: ", updatedCards);
+    //   return updatedCards;
+    // });
+
+    // closeActiveModal();
   };
 
   const handleCardLike = ({ id, isLiked }) => {
@@ -125,6 +133,8 @@ function App() {
       return auth.signUp({ email, password, username }).then((res) => {
         console.log(res.message);
         handleSignUpModal({ email, password, username });
+        localStorage.setItem("jwt", res.token, currentUser);
+        console.log(currentUser);
         setCurrentUser({ email, password, username });
         setLoggedIn(true);
         closeActiveModal();
@@ -138,7 +148,8 @@ function App() {
       return auth.signIn({ username, password }).then((res) => {
         handleLoginModal({ username, password });
         setCurrentUser({ username, password });
-        localStorage.setItem("jwt", res.token);
+        localStorage.setItem("jwt", res.token, currentUser);
+        console.log(currentUser);
         setLoggedIn(true);
       });
     };
@@ -179,6 +190,19 @@ function App() {
     };
   }, [activeModal]);
   console.log(currentUser);
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      auth
+        .checkToken(token)
+        .then((res) => {
+          setLoggedIn(true);
+          setCurrentUser(res);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [loggedIn]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
