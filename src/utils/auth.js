@@ -1,23 +1,21 @@
 import { baseUrl } from "./api";
 import { checkResponse } from "./api";
 
-export const signUp = ({ email, password, username }, token) => {
+export const signUp = ({ email, password, username }) => {
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ email, password, username }),
   }).then(checkResponse);
 };
 
-export const signIn = ({ username, password }, token) => {
+export const signIn = ({ username, password }) => {
   return fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ username, password }),
   }).then(checkResponse);

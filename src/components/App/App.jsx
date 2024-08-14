@@ -130,7 +130,7 @@ function App() {
   const handleSignUp = ({ email, password, username }) => {
     setIsLoading(false);
     const makeRequest = () => {
-      return auth.signUp({ email, password, username }, token).then((res) => {
+      return auth.signUp({ email, password, username }).then((res) => {
         console.log(res.message);
         handleSignUpModal({ email, password, username });
         localStorage.setItem("jwt", res.token, currentUser);
@@ -145,13 +145,17 @@ function App() {
 
   const handleLogin = ({ username, password }) => {
     const makeRequest = () => {
-      return auth.signIn({ username, password }, token).then((res) => {
-        handleLoginModal({ username, password });
-        setCurrentUser({ username, password });
-        localStorage.setItem("jwt", res.token, currentUser);
-        console.log(currentUser);
-        setLoggedIn(true);
-      });
+      return auth
+        .signIn({ username, password })
+        .then((res1) => {
+          localStorage.setItem("jwt", res1.token);
+          return auth.getCurrentUser(res1.token);
+        })
+        .then(({ username, password }) => {
+          handleLoginModal({ username, password });
+          setLoggedIn(true);
+          setCurrentUser({ username, password });
+        });
     };
     handleSubmit(makeRequest);
   };
