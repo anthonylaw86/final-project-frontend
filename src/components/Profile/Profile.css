@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("../../vendor//Roboto-Medium.woff");
+}
+
 .profile {
   display: flex;
   flex-direction: column;
@@ -7,4 +12,19 @@
 .spotify {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+}
+
+.spotify-message {
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+  text-align: center;
+  color: white;
+  margin: 0;
+}
+
+.spotify-message_highlight {
+  color: rgba(3, 168, 44, 0.9);
 }
