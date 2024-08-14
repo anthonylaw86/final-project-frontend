@@ -4,6 +4,7 @@ import * as auth from "../../utils/auth";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function RedirectPage({ setLoggedIn, setCurrentUser }) {
+  debugger;
   const navigate = useNavigate();
   const currentUser = useContext(CurrentUserContext);
   console.log(currentUser);
