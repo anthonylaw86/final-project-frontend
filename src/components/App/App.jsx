@@ -132,11 +132,10 @@ function App() {
     const makeRequest = () => {
       return auth.signUp({ email, password, username }).then((res) => {
         console.log(res.message);
-        handleSignUpModal({ email, password, username });
-        localStorage.setItem("jwt", res.token, currentUser);
+
         console.log(currentUser);
         setCurrentUser({ email, password, username });
-        setLoggedIn(true);
+        handleLogin({ username, password });
         closeActiveModal();
       });
     };
@@ -148,11 +147,14 @@ function App() {
       return auth
         .signIn({ username, password })
         .then((res1) => {
+          console.log(res1);
           localStorage.setItem("jwt", res1.token);
+
           return auth.getCurrentUser(res1.token);
         })
-        .then(({ username, password }) => {
-          handleLoginModal({ username, password });
+        .then((res2) => {
+          console.log(res2);
+          handleLoginModal(res2.user);
           setLoggedIn(true);
           setCurrentUser({ username, password });
         });
