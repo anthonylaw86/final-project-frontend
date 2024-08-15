@@ -22,7 +22,9 @@ Currently, two official plugins are available:
 
 ## Running The Project
 
-npm run dev
+npm run dev - to launch the server with the hot reload feature.
+
+npm run start - to launch the server
 
 # LINKS
 
@@ -41,4 +43,3 @@ https://api.beatapp.strangled.net
 ![Screenshot 2024-08-13 at 12 47 57 PM](https://github.com/user-attachments/assets/06a41e96-0ba7-4911-8cee-2ae29db1fffa)
 
 ![Screenshot 2024-08-13 at 12 55 49 PM](https://github.com/user-attachments/assets/f6f1a3a8-986a-49d5-8d37-d7db165f0fc7)
-
