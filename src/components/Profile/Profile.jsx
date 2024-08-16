@@ -25,6 +25,7 @@ function Profile({
 
   useEffect(() => {
     const getToken = async () => {
+      debugger;
       try {
         const response = await fetch("http://localhost:3002/auth/token", {
           method: "GET",

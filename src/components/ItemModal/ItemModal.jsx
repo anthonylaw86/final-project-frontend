@@ -6,7 +6,11 @@ import { useContext } from "react";
 function ItemModal({ activeModal, onClose, card, onCardDelete }) {
   const handleDeleteCard = (e) => {
     e.preventDefault();
-    onCardDelete(card.id);
+    if (card && card._id) {
+      onCardDelete(card._id);
+    } else {
+      console.error("Card ID is missing");
+    }
   };
 
   const currentUser = useContext(CurrentUserContext);

@@ -71,6 +71,7 @@
   width: 20px;
   height: 20px;
   cursor: pointer;
+  margin-left: 20px;
 }
 
 .card__like-button_img {

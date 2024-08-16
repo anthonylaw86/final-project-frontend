@@ -28,7 +28,7 @@ import api from "../../utils/api";
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
-  const [musicCards, setMusicCards] = useState(defaultMusicCards);
+  const [musicCards, setMusicCards] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [selectedCard, setSelectedCard] = useState({});
@@ -83,27 +83,42 @@ function App() {
     handleSubmit(makeRequest);
   };
 
-  const handleDeleteCard = (card) => {
+  const handleDeleteCard = (cardId) => {
+    console.log("delete request for card id", cardId);
+
     const token = localStorage.getItem("jwt");
+
+    if (!token) {
+      console.error("JWT token not found in localStorage");
+      return;
+    }
+
     const makeRequest = () => {
-      return api.deleteMusicItem(card._id, token).then(() => {
-        setMusicCards((cards) => cards.filter((x) => x._id !== card._id));
-      });
+      return api
+        .deleteMusicItem(cardId, token)
+        .then(() => {
+          setMusicCards((cards) => cards.filter((x) => x._id !== cardId));
+        })
+        .catch((error) => {
+          console.error("Error deleting item:", error);
+        });
     };
+
     handleSubmit(makeRequest);
-
-    // console.log("Deleting card with ID:", cardId);
-
-    // setMusicCards((prevCards) => {
-    //   console.log(cardId);
-    //   console.log("Original cards: ", prevCards);
-    //   const updatedCards = prevCards.filter((card) => card.id !== cardId);
-    //   console.log("Updated cards: ", updatedCards);
-    //   return updatedCards;
-    // });
-
-    // closeActiveModal();
   };
+
+  // console.log("Deleting card with ID:", cardId);
+
+  // setMusicCards((prevCards) => {
+  //   console.log(cardId);
+  //   console.log("Original cards: ", prevCards);
+  //   const updatedCards = prevCards.filter((card) => card.id !== cardId);
+  //   console.log("Updated cards: ", updatedCards);
+  //   return updatedCards;
+  // });
+
+  // closeActiveModal();
+  // };
 
   const handleCardLike = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
@@ -112,7 +127,7 @@ function App() {
           .addLike(id, token)
           .then((updatedCard) => {
             setMusicCards((cards) =>
-              cards.map((item) => (item.id === id ? updatedCard.data : item))
+              cards.map((item) => (item._id === id ? updatedCard.data : item))
             );
           })
           .catch((err) => console.log(err))
@@ -120,7 +135,7 @@ function App() {
           .removeLike(id, token)
           .then((updatedCard) => {
             setMusicCards((cards) =>
-              cards.map((item) => (item.id === id ? updatedCard.data : item))
+              cards.map((item) => (item._id === id ? updatedCard.data : item))
             );
           })
           .catch((err) => console.log(err));
