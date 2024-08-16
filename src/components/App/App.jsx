@@ -26,7 +26,6 @@ import * as auth from "../../utils/auth";
 import api from "../../utils/api";
 
 function App() {
-  localStorage.clear();
   const [activeModal, setActiveModal] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
   const [musicCards, setMusicCards] = useState(defaultMusicCards);

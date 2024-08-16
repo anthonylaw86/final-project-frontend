@@ -15,17 +15,19 @@ function RedirectPage({ setLoggedIn, setCurrentUser }) {
     };
     const token = getCodeFromURL();
     if (token) {
+      navigate("/profile");
+      setLoggedIn(true);
       localStorage.setItem("authCode", token);
-      auth
-        .getCurrentUser(token)
-        .then((user) => {
-          setCurrentUser(user);
-          setLoggedIn(true);
-          navigate("/profile");
-        })
-        .catch((err) => {
-          console.log("Error retrieving user data", err);
-        });
+      // auth
+      //   .getCurrentUser(token)
+      //   .then((user) => {
+      //     setCurrentUser(user);
+      //     setLoggedIn(true);
+      //     navigate("/profile");
+      //   })
+      //   .catch((err) => {
+      //     console.log("Error retrieving user data", err);
+      //   });
     }
   }, [navigate, setLoggedIn, setCurrentUser]);
 
