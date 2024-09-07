@@ -78,6 +78,7 @@ function App() {
         .addNewMusicItems({ name, artist, albumUrl }, token)
         .then((data) => {
           setMusicCards([data, ...musicCards]);
+          console.log(musicCards);
         });
     };
     handleSubmit(makeRequest);

@@ -72,7 +72,7 @@ function Profile({
 
       {
         <div className="spotify">
-          {token === "" ? <SpotifyLogin /> : <WebPlayback token={token} />}
+          {!token ? <SpotifyLogin /> : <WebPlayback token={token} />}
           <p className="spotify-message">
             You must have a "Premium"{" "}
             <span className="spotify-message_highlight">Spotify</span> account

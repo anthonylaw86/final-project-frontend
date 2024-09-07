@@ -12,8 +12,15 @@ function ItemCard({ item, onCardClick, onCardLike, loggedIn }) {
 
   const currentUser = useContext(CurrentUserContext);
 
-  const isLiked = item.likes.some((id) => id === currentUser._id);
-  // console.log(item);
+  const isLiked =
+    Array.isArray(item.likes) &&
+    item.likes.some((_id) => _id === currentUser._id);
+  // const isLiked = item.likes.some((_id) => _id === currentUser._id);
+
+  console.log(item.likes); // Should log an array
+  console.log(Array.isArray(item.likes)); // Should log true
+  console.log(currentUser);
+  console.log(currentUser._id); // Should log a valid ID
 
   function onLike() {
     onCardLike({

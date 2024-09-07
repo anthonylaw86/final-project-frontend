@@ -8,17 +8,9 @@ const About = () => {
         <div className="about__text">
           <h2 className="about__text-author">About the author</h2>
           <p className="about__text-bio">
-            Hey friends, my name is Anthony Law & I'm a full stack software
-            engineer. My current coding languages include React, JavaScript,
-            HTML, CSS, Node, & Express.
+          I am a passionate and adaptable Full Stack Software Engineer transitioning from a diverse background in hospitality and retail management to the world of software development. With hands-on experience in the MERN stack, JavaScript, and modern tools like React, Node.js, and Vite, I have honed my ability to build user-friendly, efficient, and secure software solutions.
             <br></br>
-            <br></br>My work history was in the hospitality industry, lastly as
-            a bar manager, and about a year or more ago I decided to leave & try
-            something new. I started learning to code at TripleTen bootcamp.
-            Where I've learned thorough theory and project's how to handle a
-            different number of programming tasks. I'm looking to hone my skills
-            further as well as perfect & build upon my current knowledge. I'd
-            love to work with you.
+            <br></br>With a solid foundation in software engineering principles from my Full Stack Bootcamp at TripleTen, I am excited to bring my strong problem-solving skills, creativity, and collaborative mindset to a team that values innovation and continuous growth. I am open to new opportunities and challenges where I can make an impact by combining my technical skills and customer-focused approach.
           </p>
         </div>
       </div>
