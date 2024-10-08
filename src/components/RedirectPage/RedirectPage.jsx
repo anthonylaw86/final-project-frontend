@@ -1,6 +1,5 @@
-import React, { useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import * as auth from "../../utils/auth";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function RedirectPage({ setLoggedIn, setCurrentUser }) {
@@ -18,16 +17,6 @@ function RedirectPage({ setLoggedIn, setCurrentUser }) {
       navigate("/profile");
       setLoggedIn(true);
       localStorage.setItem("authCode", token);
-      // auth
-      //   .getCurrentUser(token)
-      //   .then((user) => {
-      //     setCurrentUser(user);
-      //     setLoggedIn(true);
-      //     navigate("/profile");
-      //   })
-      //   .catch((err) => {
-      //     console.log("Error retrieving user data", err);
-      //   });
     }
   }, [navigate, setLoggedIn, setCurrentUser]);
 

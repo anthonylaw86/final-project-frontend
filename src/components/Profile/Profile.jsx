@@ -1,7 +1,5 @@
 import "./Profile.css";
-
 import { useEffect, useState } from "react";
-
 import Header from "../Header/Header";
 import CardSection from "../CardSection/CardSection";
 import SpotifyLogin from "../SpotifyLogin/SpotifyLogin";
@@ -58,7 +56,7 @@ function Profile({
       <Header
         setLoggedIn={setLoggedIn}
         handleLoginModal={handleLoginModal}
-        isLoggedIn={loggedIn}
+        loggedIn={loggedIn}
         handleSignUpModal={handleSignUpModal}
       />
 

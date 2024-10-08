@@ -1,8 +1,5 @@
 import "./App.css";
-import React from "react";
-
-// Hooks and Routes
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 // Components
@@ -10,16 +7,14 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
-import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
 import Profile from "../Profile/Profile";
 import ItemModal from "../ItemModal/ItemModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import RedirectPage from "../RedirectPage/RedirectPage";
+import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
 
 // Contexts & Constants
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-
-import defaultMusicCards from "../../../constants/defaultMusicCards";
 
 // Utils
 import * as auth from "../../utils/auth";
@@ -30,30 +25,20 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [musicCards, setMusicCards] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [selectedCard, setSelectedCard] = useState({});
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Modal Handlers
-  const closeActiveModal = () => {
-    setActiveModal("");
-  };
+  const toggleModal = (modalType = "") => setActiveModal(modalType);
 
-  const handleSignUpModal = () => {
-    setActiveModal("signup");
-  };
-
-  const handleLoginModal = () => {
-    setActiveModal("login");
-  };
+  const handleAddClick = () => toggleModal("add-music");
+  const handleLoginModal = () => toggleModal("login");
+  const handleSignUpModal = () => toggleModal("signup");
+  const closeActiveModal = () => toggleModal();
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
-  };
-
-  const handleAddClick = () => {
-    setActiveModal("add-music");
   };
 
   // Item Handlers
@@ -108,19 +93,6 @@ function App() {
     handleSubmit(makeRequest);
   };
 
-  // console.log("Deleting card with ID:", cardId);
-
-  // setMusicCards((prevCards) => {
-  //   console.log(cardId);
-  //   console.log("Original cards: ", prevCards);
-  //   const updatedCards = prevCards.filter((card) => card.id !== cardId);
-  //   console.log("Updated cards: ", updatedCards);
-  //   return updatedCards;
-  // });
-
-  // closeActiveModal();
-  // };
-
   const handleCardLike = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
     !isLiked
@@ -143,63 +115,51 @@ function App() {
   };
 
   // Authorization Handlers
-  const handleSignUp = ({ email, password, username }) => {
-    setIsLoading(false);
-    const makeRequest = () => {
-      return auth.signUp({ email, password, username }).then((res) => {
-        console.log(res.message);
-
-        console.log(currentUser);
-        setCurrentUser({ email, password, username });
-        handleLogin({ username, password });
+  const authenticateUser = (makeRequest, userInfo) => {
+    handleSubmit(() =>
+      makeRequest(userInfo).then((res) => {
+        localStorage.setItem("jwt", res.token);
+        setCurrentUser(userInfo);
+        setLoggedIn(true);
         closeActiveModal();
-      });
-    };
-    handleSubmit(makeRequest);
+      })
+    );
   };
 
-  const handleLogin = ({ username, password }) => {
-    const makeRequest = () => {
-      return auth
-        .signIn({ username, password })
-        .then((res1) => {
-          console.log(res1);
-          localStorage.setItem("jwt", res1.token);
-
-          return auth.getCurrentUser(res1.token);
-        })
-        .then((res2) => {
-          console.log(res2);
-          handleLoginModal(res2.user);
-          setLoggedIn(true);
-          setCurrentUser({ username, password });
-        });
-    };
-    handleSubmit(makeRequest);
-  };
+  const handleSignUp = (userInfo) => authenticateUser(auth.signUp, userInfo);
+  const handleLogin = (userInfo) => authenticateUser(auth.signIn, userInfo);
 
   // useEffect's
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("currentUser"));
-    if (storedUser) {
-      setCurrentUser(storedUser);
+    const token = localStorage.getItem("jwt");
+
+    if (storedUser) setCurrentUser(storedUser);
+
+    if (token) {
+      auth
+        .checkToken(token)
+        .then((res) => {
+          setLoggedIn(true);
+          setCurrentUser(res);
+        })
+        .catch((err) => {
+          console.error("Token verification failed: ", err);
+          setLoggedIn(false);
+        });
     }
   }, []);
 
   useEffect(() => {
     api
       .getMusicItems()
-      .then((items) => {
-        setMusicCards(items);
-      })
-      .catch((res) => {
-        console.log(`Error: ${res}`);
+      .then(setMusicCards)
+      .catch((error) => {
+        console.error("Error fetching music items", error);
       });
   }, []);
 
   useEffect(() => {
-    if (!activeModal) return;
-
     const handleEscapeClose = (e) => {
       if (e.key === "Escape") {
         closeActiveModal();
@@ -211,20 +171,6 @@ function App() {
       document.removeEventListener("keydown", handleEscapeClose);
     };
   }, [activeModal]);
-  console.log(currentUser);
-
-  useEffect(() => {
-    const token = localStorage.getItem("jwt");
-    if (token) {
-      auth
-        .checkToken(token)
-        .then((res) => {
-          setLoggedIn(true);
-          setCurrentUser(res);
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [loggedIn]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -239,7 +185,6 @@ function App() {
                     currentUser={currentUser}
                     handleLoginModal={handleLoginModal}
                     handleSignUpModal={handleSignUpModal}
-                    isLoggedIn={isLoggedIn}
                     loggedIn={loggedIn}
                   />
                 }
@@ -258,7 +203,6 @@ function App() {
                       loggedIn={loggedIn}
                       onCardLike={handleCardLike}
                       setLoggedIn={setLoggedIn}
-                      isLoggedIn={isLoggedIn}
                     />
                   </ProtectedRoute>
                 }

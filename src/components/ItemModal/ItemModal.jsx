@@ -1,7 +1,5 @@
 import "./ItemModal.css";
 import close from "../../assets/close.svg";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { useContext } from "react";
 
 function ItemModal({ activeModal, onClose, card, onCardDelete }) {
   const handleDeleteCard = (e) => {
@@ -12,9 +10,6 @@ function ItemModal({ activeModal, onClose, card, onCardDelete }) {
       console.error("Card ID is missing");
     }
   };
-
-  const currentUser = useContext(CurrentUserContext);
-  const isOwn = card.owner === currentUser;
 
   return (
     <div className={`modal ${activeModal === "preview" && "modal_opened"} `}>

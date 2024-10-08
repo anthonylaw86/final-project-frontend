@@ -1,7 +1,5 @@
 import "./CardSection.css";
-
 import ItemCard from "../ItemCard/ItemCard";
-
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
@@ -15,13 +13,10 @@ function CardSection({
   const currentUser = useContext(
     CurrentUserContext || { id: 1, name: "Test User" }
   );
-
-  console.log("cards", cards);
-
-  console.log("currentUser", currentUser);
-
   const userCards = cards.filter((item) => item === currentUser);
 
+  console.log("cards", cards);
+  console.log("currentUser", currentUser);
   console.log("Filtered userCards:", userCards);
 
   return (

@@ -1,5 +1,4 @@
 import "./ItemCard.css";
-
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import likeIcon from "../../assets/likeIcon.svg";
@@ -15,12 +14,11 @@ function ItemCard({ item, onCardClick, onCardLike, loggedIn }) {
   const isLiked =
     Array.isArray(item.likes) &&
     item.likes.some((_id) => _id === currentUser._id);
-  // const isLiked = item.likes.some((_id) => _id === currentUser._id);
 
-  console.log(item.likes); // Should log an array
-  console.log(Array.isArray(item.likes)); // Should log true
+  console.log(item.likes);
+  console.log(Array.isArray(item.likes));
   console.log(currentUser);
-  console.log(currentUser._id); // Should log a valid ID
+  console.log(currentUser._id);
 
   function onLike() {
     onCardLike({

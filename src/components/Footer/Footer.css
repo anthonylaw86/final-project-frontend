@@ -28,6 +28,11 @@
   margin-left: 24px;
 }
 
+.footer__icon-button:hover {
+  cursor: pointer;
+  transform: scale(1.3);
+}
+
 @media screen and (max-width: 410px) {
   .footer {
     flex-direction: column;

@@ -61,7 +61,7 @@ const RegisterModal = ({
       <label className="modal__label">
         Password
         <input
-          type="text"
+          type="password"
           className="modal__input"
           id="password"
           placeholder="Password"

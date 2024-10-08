@@ -1,13 +1,11 @@
 import "./Header.css";
-
 import React, { useContext } from "react";
-
 import { Link } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 import MusicEmoji from "../../assets/musicemoji.png";
 
-function Header({ handleLoginModal, isLoggedIn }) {
+function Header({ handleLoginModal, loggedIn }) {
   const currentUser = useContext(CurrentUserContext);
 
   return (
@@ -23,7 +21,7 @@ function Header({ handleLoginModal, isLoggedIn }) {
           <Link to="/" className="header__link">
             <p className="header__home-link">Home</p>
           </Link>
-          {isLoggedIn ? (
+          {loggedIn ? (
             <Link to="/profile" className="header__link">
               <p className="header__username">{currentUser?.username}</p>
             </Link>
